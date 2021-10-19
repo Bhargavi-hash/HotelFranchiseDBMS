@@ -159,3 +159,119 @@ INSERT INTO Department VALUES
 ('Chef', 20),
 ('Cleaner', 12),
 ('Security', 7);
+
+-- Creating a Table structure for Table "Menu"
+
+CREATE TABLE IF NOT EXISTS Menu(
+    Food_Type VARCHAR(40),
+    Food_Item_ID INT,
+    Item_Cost INT,
+    Food_Item VARCHAR(70),
+    PRIMARY KEY(Food_Item_ID)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+-- Inserting values into table "Menu" --(Veg Starters)
+
+INSERT INTO Menu VALUES
+('Veg Starters', 1, 30, 'Achari Paneer Tikka'),
+('Veg Starters', 2, 27, 'Hariyali Mushroom'),
+('Veg Starters', 3, 21, 'Beetroot Kebab'),
+('Veg Starters', 4, 29, 'American Cheese Potato'),
+('Veg Starters', 5, 25, 'Crispy corn'),
+('Veg Starters', 6, 27, 'Oriental grill veg'),
+('Veg Starters', 7, 27, 'Churasco Pineapple');
+
+-- Inserting values into table "Menu" --(Non-veg Starters)
+INSERT INTO Menu VALUES
+('Non-veg Starters', 8, 39, 'Kalmi Chicken Tikka'),
+('Non-veg Starters', 9, 41, 'Angara Tangadi'),
+('Non-veg Starters', 10, 37, 'Mutton Pudina Seekh'),
+('Non-veg Starters', 11, 36, 'Bhuna wings'),
+('Non-veg Starters', 12, 42, 'Coastal BBQ Fish'),
+('Non-veg Starters', 13, 37, 'Chilly Garlic Prawns');
+
+-- Inserting values into table "Menu" --(Soup)
+INSERT INTO Menu VALUES
+('Soup', 14, 22, 'Veg manchow Soup'),
+('Soup', 15, 41, 'Lemon coriander chicken soup');
+
+-- Inserting into table "Menu" --(table Dips)
+INSERT INTO Menu VALUES
+('Table Dips', 16, 10, 'Mint Chutney'),
+('Table Dips', 17, 12, 'Garlic Mayo'),
+('Table Dips', 18, 12, 'Mango Mint'),
+('Table Dips', 19, 11, 'Tomato Salsa');
+
+-- Inserting into table "Menu" --(Salads)
+INSERT INTO Menu VALUES
+('Salads', 20, 49, 'Mixed Sprout Salad'),
+('Salads', 21, 48, 'German Potato Salad'),
+('Salads', 22, 51, 'Carrot Raisin Salad'),
+('Salads', 23, 41, 'Tossed Veg Salad'),
+('Salads', 24, 54, 'Green Salad'),
+('Salads', 25, 50, 'Dahi Salad'),
+('Salads', 26, 57, 'Pickle Home Made'),
+('Salads', 27, 54, 'Fried Fryum and Baked Papad'),
+('Salads', 28, 59, 'Curd'),
+('Salads', 29, 41, 'Curd Rice');
+
+-- Inserting values into table "Menu" --(Sauce, Pasta, Eggs, Lassi)
+INSERT INTO Menu VALUES
+('Sauce', 30, 24, 'AB Dancing Sauce'),
+('Sauce', 31, 31, 'Asian Black Pepper Sauce'),
+('Sauce', 32, 28, 'Pesto Sauce'),
+('Sauce', 33, 36, 'Moroccan Sauce'),
+('Sauce', 34, 40, 'Black Bean Sauce'),
+('Sauce', 35, 48, 'Toofani Indian Curry Sauce'),
+('Pasta Counter', 36, 41, 'Red Sauce and Cheesee Sauce'),
+('Egg Counter', 37, 47, 'Fried Masala Egg'),
+('Lassi Counter', 38, 52, 'Punjabi Lassi'),
+('Lassi Counter', 39, 66, 'Dil Bahar Lassi'),
+('Lassi Counter', 40, 57, 'Chaas');
+
+-- Inserting into table "Menu" --(Desserts)
+INSERT INTO Menu VALUES
+('Dessets', 41, 100, 'Shahi Phirni'),
+('Dessets', 42, 124, 'Angoori Gulab Jamun'),
+('Dessets', 43, 139, 'Moong Dal Halwa'),
+('Dessets', 44, 129, 'AB celebration Chocolate Pastry'),
+('Dessets', 45, 101, 'Chocolate Walnut Brownie'),
+('Dessets', 46, 147, 'Pineapple Upside Down'),
+('Dessets', 47, 124, 'Jalebi with Rabdi'),
+('Dessets', 48, 135, 'Assorted Ice Cream'),
+('Dessets', 49, 111, 'Cut Fruits'),
+('Dessets', 50, 97, 'Indrani');
+
+-- Inserting into table "Menu" --(Non-veg main course)
+INSERT INTO Menu VALUES
+('Non-veg Main Course', 51, 99, 'Mutton Rogan Josh'),
+('Non-veg Main Course', 52, 119, 'Allepy Fish Curry'),
+('Non-veg Main Course', 53, 87, 'Dum Ka Murg'),
+('Non-veg Main Course', 54, 84, 'Szechuan Chicken Fried Rice'),
+('Non-veg Main Course', 55, 105, 'Egg Lababdar'),
+('Non-veg Main Course', 56, 121, 'Hyderabadi Chicken Dum Biryani'),
+('Non-veg Main Course', 57, 99, 'Roti'),
+('Non-veg Main Course', 58, 88, 'Naan');
+
+-- Inserting into table "Menu" --(Veg Main course)
+INSERT INTO Menu VALUES
+('Veg Main Course', 59, 76, 'Kadhai Paneer'),
+('Veg Main Course', 60, 89, 'Kachhe Kele Ka Kofta'),
+('Veg Main Course', 61, 74, 'Bhindi Dopyaza'),
+('Veg Main Course', 62, 109, 'Mushroom babycorn Takatak'),
+('Veg Main Course', 63, 80, 'Pindi Chole'),
+('Veg Main Course', 64, 121, 'Paneer Butter Masala'),
+('Veg Main Course', 65, 88, 'Steamed Basmati Rice'),
+('Veg Main Course', 66, 69, 'Hyderbadi Veg Dum Viryani'),
+('Veg Main Course', 67, 105, 'Butter Garlic Noodles'),
+('Veg Main Course', 68, 100, 'Lahsooni Dal Tadka'),
+('Veg Main Course', 69, 62, 'AB Special Dal');
+
+-- Inserting values into table "menu" --(Chaat)
+INSERT INTO Menu VALUES
+('Chaat', 70, 74, 'Ragda Pattice'),
+('Chaat', 71, 84, 'Pani Pauri'),
+('Chaat', 72, 64, 'Dahi Puri'),
+('Chaat', 73, 62, 'Bhel Puri');
+
+
