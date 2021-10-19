@@ -274,4 +274,97 @@ INSERT INTO Menu VALUES
 ('Chaat', 72, 64, 'Dahi Puri'),
 ('Chaat', 73, 62, 'Bhel Puri');
 
+-- Creating a Table structure for table "Customer"
+CREATE TABLE IF NOT EXISTS Customer(
+    Customer_ID INT NOT NULL,
+    Branch_ID INT NOT NULL,
+    First_Name VARCHAR(40),
+    Last_Name VARCHAR(40),
+    Table_ID INT,
+    PRIMARY KEY(Customer_ID)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+-- Inserting values into table "Customer"
+INSERT INTO Customer VALUES
+(1, 3, 'Harry', 'Potter', 7),
+(2, 3, 'Ron', 'Weasley', 7),
+(3, 3, 'Hermione', 'Granger', 7),
+(4, 2, 'Cedric', 'Diggory', 5),
+(5, 2, 'Thorin', 'Oekinshield', 4),
+(6, 2, 'Victor', 'Krum', 4),
+(7, 1, 'Lockhart', 'Premb', 2),
+(8, 4, 'Trienwel', 'Sinistra', 4),
+(9, 4, 'James', 'Potter', 3),
+(10, 4, 'Sirius', 'Black', 3),
+(11, 1, 'Algus', 'Filch', 2),
+(12, 1, 'Norris', 'Filch', 2);
+
+-- Creating a table structure for table "Raw_Materials"
+CREATE TABLE IF NOT EXISTS Raw_Materials(
+    Branch_ID INT NOT NULL,
+    Source_ID INT NOT NULL,
+    Source_Name VARCHAR(60),
+    PRIMARY KEY(Branch_ID, Source_ID)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+-- Inserting values into table "Raw_Materials"
+INSERT INTO Raw_Materials VALUES
+(1, 3, 'Dairy'),
+(1, 2, 'Vegetable_Shop'),
+(1, 1, 'Poultry'),
+(2, 3, 'Dairy'),
+(2, 2, 'Vegetable_Shop'),
+(2, 1, 'Poultry'),
+(3, 3, 'Dairy'),
+(3, 2, 'Vegetable_Shop'),
+(3, 1, 'Poultry'),
+(4, 3, 'Dairy'),
+(4, 2, 'Vegetable_Shop'),
+(4, 1, 'Poultry');
+
+-- Creating table structure for table "Poultry"
+CREATE TABLE IF NOT EXISTS Poultry(
+    Non_veg_Item VARCHAR(60),
+    Item_Cost INT NOT NULL,
+    Quantity FLOAT NOT NULL,
+    Day_date INT NOT NULL,
+    Month_date INT NOT NULL,
+    Year_date INT NOT NULL,
+    Branch_ID INT NOT NULL,
+    PRIMARY KEY(Non_veg_Item, Branch_ID)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+-- Creating table structure for table "Vegetable_Shop"
+CREATE TABLE IF NOT EXISTS Vegetable_Shop(
+    Vegetable_Name VARCHAR(60),
+    Item_Cost INT NOT NULL,
+    Quantity FLOAT NOT NULL,
+    Day_date INT NOT NULL,
+    Month_date INT NOT NULL,
+    Year_date INT NOT NULL,
+    Branch_ID INT NOT NULL,
+    PRIMARY KEY(Vegetable_Name, Branch_ID)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+-- Creating table structure for table "Dairy"
+CREATE TABLE IF NOT EXISTS Dairy(
+    Dairy_Item VARCHAR(60),
+    Item_Cost INT NOT NULL,
+    Quantity FLOAT NOT NULL,
+    Day_date INT NOT NULL,
+    Month_date INT NOT NULL,
+    Year_date INT NOT NULL,
+    Branch_ID INT NOT NULL,
+    PRIMARY KEY(Dairy_Item, Branch_ID)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+-- Creating table structure for table "Order_c"
+CREATE TABLE IF NOT EXISTS Order_c(
+    Quantity INT NOT NULL,
+    Customer_ID INT NOT NULL,
+    Food_Item_ID INT NOT NULL,
+    PRIMARY KEY(Customer_ID, Food_Item_ID)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+
 
