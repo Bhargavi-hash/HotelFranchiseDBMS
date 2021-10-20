@@ -41,7 +41,11 @@ INSERT INTO Hotel VALUES
 (3, 400104, 17, 'Grimauld', 12),
 (4, 400128, 12, 'Hogsmead', 3);
 
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
 -- Creating Table structure for table "Furniture"
+
 DROP TABLE IF EXISTS Furniture;
 CREATE TABLE Furniture(
     Furniture_Name VARCHAR(40),
@@ -57,13 +61,18 @@ CREATE TABLE Furniture(
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- Inserting values into table "Furniture"
+
 INSERT INTO Furniture VALUES
 ('Table', 10, 1), ('Chair', 47, 1), ('Cushion', 12, 1), ('Desk', 2, 1),
 ('Table', 6, 2), ('Chair', 30, 2), ('Desk', 2, 2), ('Stool', 3, 2),
 ('Table', 50, 3), ('Chair', 270, 3), ('Cushion', 316, 3), ('Desk', 7, 3), ('Stool', 15, 3),
 ('Table', 12, 4), ('Chair', 58, 4), ('Stool', 16, 4), ('Desk', 2, 4);
 
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
 -- Creating Table structure for table "Staff"
+
 DROP TABLE IF EXISTS Staff;
 CREATE TABLE IF NOT EXISTS Staff(
     Staff_ID INT NOT NULL,
@@ -145,7 +154,11 @@ INSERT INTO Staff VALUES
 (50, 4, 'Tom', 'Riddle', 24, 9, 1989, 11555, 'Night', 'Chef'),
 (51, 4, 'Alastor', 'Moody', 27, 1, 1983, 19950, 'Night', 'Manager');
 
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+
 -- Creating Table structure for Table "Owners"
+
 DROP TABLE IF EXISTS Owners;
 CREATE TABLE Owners(
     First_Name VARCHAR(40) NOT NULL,
@@ -166,6 +179,9 @@ INSERT INTO Owners VALUES
 ('Rowena', 'Ravenclaw', 95000, 3),
 ('Helga', 'Hufflepuff', 60700, 4);
 
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+
 -- Creating a Table structure for Table "Department"
 DROP TABLE IF EXISTS Department;
 CREATE TABLE Department(
@@ -181,7 +197,11 @@ INSERT INTO Department VALUES
 ('Cleaner', 12),
 ('Security', 7);
 
+-------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+
 -- Creating a Table structure for Table "Menu"
+
 DROP TABLE IF EXISTS Menu;
 CREATE TABLE Menu(
     Food_Type VARCHAR(40),
@@ -295,7 +315,11 @@ INSERT INTO Menu VALUES
 ('Chaat', 72, 64, 'Dahi Puri'),
 ('Chaat', 73, 62, 'Bhel Puri');
 
+-------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------
+
 -- Creating a Table structure for table "Customer"
+
 DROP TABLE IF EXISTS Customer;
 CREATE TABLE Customer(
     Customer_ID INT NOT NULL,
@@ -310,6 +334,7 @@ CREATE TABLE Customer(
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- Inserting values into table "Customer"
+
 INSERT INTO Customer VALUES
 (1, 3, 'Harry', 'Potter', 7),
 (2, 3, 'Ron', 'Weasley', 7),
@@ -324,7 +349,11 @@ INSERT INTO Customer VALUES
 (11, 1, 'Algus', 'Filch', 2),
 (12, 1, 'Norris', 'Filch', 2);
 
+----------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+
 -- Creating a table structure for table "Raw_Materials"
+
 DROP TABLE IF EXISTS Raw_Materials;
 CREATE TABLE Raw_Materials(
     Branch_ID INT NOT NULL,
@@ -334,6 +363,7 @@ CREATE TABLE Raw_Materials(
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- Inserting values into table "Raw_Materials"
+
 INSERT INTO Raw_Materials VALUES
 (1, 3, 'Dairy'),
 (1, 2, 'Vegetable_Shop'),
@@ -348,7 +378,11 @@ INSERT INTO Raw_Materials VALUES
 (4, 2, 'Vegetable_Shop'),
 (4, 1, 'Poultry');
 
+--------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------
+
 -- Creating table structure for table "Poultry"
+
 DROP TABLE IF EXISTS Poultry;
 CREATE TABLE Poultry(
     Non_veg_Item VARCHAR(60),
@@ -361,7 +395,17 @@ CREATE TABLE Poultry(
     PRIMARY KEY(Non_veg_Item, Branch_ID)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+-- Inserting values into "Poultry"
+
+INSERT INTO Poultry VALUES
+('Chicken', 89, 50, 12, 12, 2020, 3),
+('Egg', 40, 200, 9, 8, 2021, 3),
+('Egg', 40, 210, 9, 8, 2021, 4),
+('Chicken', 89, 70, 18, 12, 2021, 1),
+('Egg', 40, 100, 16, 2, 2021, 2);
+
 -- Creating table structure for table "Vegetable_Shop"
+
 DROP TABLE IF EXISTS Vegetable_Shop;
 CREATE TABLE Vegetable_Shop(
     Vegetable_Name VARCHAR(60),
@@ -374,7 +418,18 @@ CREATE TABLE Vegetable_Shop(
     PRIMARY KEY(Vegetable_Name, Branch_ID)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+-- Inserting values into "Vegetable_Shop"
+
+INSERT INTO Vegetable_Shop VALUES
+('Carrot', 12, 40, 25, 6, 2021, 3),
+('Beetroot', 89, 50, 12, 11, 2020, 3),
+('Onion', 40, 200, 9, 8, 2021, 3),
+('Tomato', 40, 210, 9, 8, 2021, 4),
+('Cabbage', 89, 70, 18, 12, 2021, 1),
+('Cucumber', 40, 100, 16, 2, 2021, 2);
+
 -- Creating table structure for table "Dairy"
+
 DROP TABLE IF EXISTS Dairy;
 CREATE TABLE Dairy(
     Dairy_Item VARCHAR(60),
@@ -387,7 +442,21 @@ CREATE TABLE Dairy(
     PRIMARY KEY(Dairy_Item, Branch_ID)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
--- Creating table structure for table "Order_c"
+-- Inserting values into "Dairy"
+
+INSERT INTO Dairy VALUES
+('Milk', 12, 40, 25, 6, 2021, 3),
+('Butter', 89, 50, 12, 11, 2020, 3),
+('Cheese', 40, 200, 9, 8, 2021, 3),
+('Yogurt', 40, 210, 9, 8, 2021, 4),
+('Milk', 89, 70, 18, 12, 2021, 1),
+('Milk', 40, 100, 16, 2, 2021, 2);
+
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+
+-- Creating table structure for table "_Order"
+
 DROP TABLE IF EXISTS _Order;
 CREATE TABLE _Order(
     Quantity INT NOT NULL,
@@ -396,8 +465,24 @@ CREATE TABLE _Order(
     PRIMARY KEY(Customer_ID, Food_Item_ID)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+-- Inserting values into "_Order"
+
+INSERT INTO _Order VALUES
+(2, 4, 14),
+(1, 4, 55),
+(1, 4, 12),
+(5, 2, 51),
+(2, 1, 5),
+(3, 1, 7),
+(4, 7, 26),
+(3, 11, 39);
+
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
+
 -- Creating table structure for "Staff_Mobile_Number"
 -- Multi-valued table
+
 DROP TABLE IF EXISTS Staff_Mobile_Number;
 CREATE TABLE Staff_Mobile_Number(
     Staff_ID INT NOT NULL,
@@ -407,8 +492,23 @@ CREATE TABLE Staff_Mobile_Number(
     ON DELETE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+-- Inserting values into "Staff_Mobile_Number"
+
+INSERT INTO Staff_Mobile_Number VALUES
+(2, 1478963250),
+(2, 5478963210),
+(47, 0123654789),
+(51, 3698521470),
+(11, 4563210789),
+(11, 8523697410),
+(13, 8741236950);
+
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+
 -- Creating table structure for "Owners_Mobile_Number"
 -- Multi-valued table
+
 DROP TABLE IF EXISTS Owners_Mobile_Number;
 CREATE TABLE Owners_Mobile_Number(
     First_Name VARCHAR(40),
@@ -432,7 +532,11 @@ INSERT INTO Owners_Mobile_Number VALUES
 ('Rowena', 'Ravenclaw', 1234567890),
 ('Helga', 'Hufflepuff', 6000500010);
 
+-----------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
+
 -- Creating a table structure for table "Discount"
+
 DROP TABLE IF EXISTS Discount;
 CREATE TABLE Discount(
     Food_Item_ID INT NOT NULL,
@@ -444,11 +548,26 @@ CREATE TABLE Discount(
     ON DELETE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+-- Inserting values into "Discount"
+
+INSERT INTO Discount VALUES
+(12, 21, 250),
+(12, 35, 350),
+(12, 49, 599),
+(60, 19, 259),
+(57, 39, 379),
+(60, 50, 549),
+(44, 29, 499);
+
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+
 -- Creating a table structure for relationship "_Orders"
 -- Customer - Orders - Menu(Food_Item)
 --              |
 --             Hotel
 -- Above is a 3 degree relationship
+
 DROP TABLE IF EXISTS _Orders;
 CREATE TABLE _Orders(
     Food_Item_ID INT NOT NULL,
@@ -457,9 +576,24 @@ CREATE TABLE _Orders(
     PRIMARY KEY (Food_Item_ID, Customer_ID, Branch_ID)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+-- Inserting values into "_Orders"
+
+INSERT INTO _Orders VALUES
+(12, 12, 4),
+(51, 11, 1),
+(41, 4, 1),
+(54, 3, 3),
+(42, 12, 4),
+(36, 4, 1),
+(27, 9, 2);
+
+---------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------
+
 -- Creating a table structure for relationship "Offers"
 -- "Hotel" offers "discount" on "order" from "Menu" to "Customer"
 -- Above is a 5 degree relationship
+
 DROP TABLE IF EXISTS Offers;
 CREATE TABLE Offers(
     Food_Item_ID INT NOT NULL,
@@ -469,7 +603,22 @@ CREATE TABLE Offers(
     PRIMARY KEY (Food_Item_ID, Customer_ID, Branch_ID, Min_Cost)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+-- Inserting values into "Offers"
+
+INSERT INTO Offers VALUES
+(12, 12, 4, 250),
+(51, 11, 1, 330),
+(41, 4, 1, 299),
+(54, 3, 3, 499),
+(42, 12, 4, 249),
+(36, 4, 1, 267),
+(27, 9, 2, 347);
+
+---------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------
+
 -- Creating a table structure for "Events"
+
 DROP TABLE IF EXISTS Events;
 CREATE TABLE Events(
     Branch_ID INT NOT NULL,
@@ -480,9 +629,20 @@ CREATE TABLE Events(
     PRIMARY KEY (Pin_Code, Street_Number, Colony_Name, Door_No)
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+-- Inserting values into "Events"
+
+INSERT INTO Events VALUES
+(4, 500012, 8, 'Hamstone', 12),
+(1, 510100, 12, 'Maprud', 21),
+(1, 500014, 3, 'Ravitol', 36);
+
+----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
+
 -- Creating table structure for relationship "Caterings"
 -- "Hotel" caterings for "orders" for "events".
 -- Above is a 3 degree relationship.
+
 DROP TABLE IF EXISTS Caterings;
 CREATE TABLE Caterings(
     Branch_ID INT NOT NULL,
@@ -516,5 +676,11 @@ CREATE TABLE Caterings(
     ON DELETE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+-- Inserting values into "Caterimgs"
 
+INSERT INTO Caterings VALUES
+(4, 500012, 8, 'Hamstone', 12, 21, 7),
+(1, 510100, 12, 'Maprud', 21, 55, 11),
+(1, 500014, 3, 'Ravitol', 36, 47, 5),
+(1, 500014, 3, 'Ravitol', 36, 48, 5);
 
