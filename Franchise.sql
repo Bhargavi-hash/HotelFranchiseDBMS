@@ -420,6 +420,18 @@ CREATE TABLE Owners_Mobile_Number(
     ON DELETE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
+-- Inserting values into "Owners_Mobile_Number"
+INSERT INTO Owners_Mobile_Number VALUES
+('Godric', 'Gryffindor', 9000500010),
+('Godric', 'Gryffindor', 9000523410),
+('Godric', 'Gryffindor', 9234500010),
+('Salazar', 'Slytherin', 8000500010),
+('Salazar', 'Slytherin', 8765500010),
+('Salazar', 'Slytherin', 8133500010),
+('Salazar', 'Slytherin', 8123500010),
+('Rowena', 'Ravenclaw', 1234567890),
+('Helga', 'Hufflepuff', 6000500010);
+
 -- Creating a table structure for table "Discount"
 DROP TABLE IF EXISTS Discount;
 CREATE TABLE Discount(
