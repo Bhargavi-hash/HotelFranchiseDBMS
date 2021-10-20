@@ -14,6 +14,11 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+-----------------------------------------------------------
+-----------------------------------------------------------
+-- Creating Database: Franchise
+-----------------------------------------------------------
 CREATE DATABASE IF NOT EXISTS Franchise;
 USE Franchise;
 
@@ -40,6 +45,9 @@ CREATE TABLE IF NOT EXISTS Furniture(
     Quantity INT,
     Branch_ID INT,
     PRIMARY KEY(Furniture_Name, Branch_ID)
+    CONSTRAINT Furniture_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- Inserting values into table "Furniture"
@@ -62,6 +70,9 @@ CREATE TABLE IF NOT EXISTS Staff(
     Shift VARCHAR(40) NOT NULL,
     Department_Name VARCHAR(40) NOT NULL,
     PRIMARY KEY(Staff_ID)
+    CONSTRAINT Staff_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- Inserting values into table "Staff" -- (First Hotel)
@@ -135,6 +146,9 @@ CREATE TABLE IF NOT EXISTS Owners(
     Monthly_Rent INT NOT NULL,
     Branch_ID INT NOT NULL,
     PRIMARY KEY(First_Name, Last_Name)
+    CONSTRAINT Owners_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- Inserting values into table "Owners"
@@ -282,6 +296,9 @@ CREATE TABLE IF NOT EXISTS Customer(
     Last_Name VARCHAR(40),
     Table_ID INT,
     PRIMARY KEY(Customer_ID)
+    CONSTRAINT Customer_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- Inserting values into table "Customer"
@@ -296,7 +313,7 @@ INSERT INTO Customer VALUES
 (8, 4, 'Trienwel', 'Sinistra', 4),
 (9, 4, 'James', 'Potter', 3),
 (10, 4, 'Sirius', 'Black', 3),
-(11, 1, 'Algus', 'Filch', 2),
+(11, 1, 'Argus', 'Filch', 2),
 (12, 1, 'Norris', 'Filch', 2);
 
 -- Creating a table structure for table "Raw_Materials"
