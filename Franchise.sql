@@ -19,11 +19,13 @@
 -----------------------------------------------------------
 -- Creating Database: Franchise
 -----------------------------------------------------------
-CREATE DATABASE IF NOT EXISTS Franchise;
+DROP DATABASE IF EXISTS Franchise;
+CREATE DATABASE Franchise;
 USE Franchise;
 
 -- Creating Table structure for table "Hotel"
-CREATE TABLE IF NOT EXISTS Hotel(
+DROP TABLE IF EXISTS Hotel;
+CREATE TABLE Hotel(
     Branch_ID INT NOT NULL,
     Pin_Code INT NOT NULL,
     Street_No INT NOT NULL,
@@ -40,14 +42,18 @@ INSERT INTO Hotel VALUES
 (4, 400128, 12, 'Hogsmead', 3);
 
 -- Creating Table structure for table "Furniture"
-CREATE TABLE IF NOT EXISTS Furniture(
+DROP TABLE IF EXISTS Furniture;
+CREATE TABLE Furniture(
     Furniture_Name VARCHAR(40),
     Quantity INT,
     Branch_ID INT,
-    PRIMARY KEY(Furniture_Name, Branch_ID)
+    -- PRIMARY KEY(Furniture_Name),
     CONSTRAINT Furniture_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
     ON UPDATE CASCADE
     ON DELETE CASCADE
+    -- FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
+    -- ON UPDATE CASCADE
+    -- ON DELETE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- Inserting values into table "Furniture"
@@ -58,6 +64,7 @@ INSERT INTO Furniture VALUES
 ('Table', 12, 4), ('Chair', 58, 4), ('Stool', 16, 4), ('Desk', 2, 4);
 
 -- Creating Table structure for table "Staff"
+DROP TABLE IF EXISTS Staff;
 CREATE TABLE IF NOT EXISTS Staff(
     Staff_ID INT NOT NULL,
     Branch_ID INT NOT NULL,
@@ -69,7 +76,7 @@ CREATE TABLE IF NOT EXISTS Staff(
     Salary INT NOT NULL,
     Shift VARCHAR(40) NOT NULL,
     Department_Name VARCHAR(40) NOT NULL,
-    PRIMARY KEY(Staff_ID)
+    PRIMARY KEY(Staff_ID),
     CONSTRAINT Staff_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
     ON UPDATE CASCADE
     ON DELETE RESTRICT
@@ -139,13 +146,13 @@ INSERT INTO Staff VALUES
 (51, 4, 'Alastor', 'Moody', 27, 1, 1983, 19950, 'Night', 'Manager');
 
 -- Creating Table structure for Table "Owners"
-
-CREATE TABLE IF NOT EXISTS Owners(
+DROP TABLE IF EXISTS Owners;
+CREATE TABLE Owners(
     First_Name VARCHAR(40) NOT NULL,
     Last_Name VARCHAR(40),
     Monthly_Rent INT NOT NULL,
     Branch_ID INT NOT NULL,
-    PRIMARY KEY(First_Name, Last_Name)
+    PRIMARY KEY(First_Name, Last_Name),
     CONSTRAINT Owners_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
     ON UPDATE CASCADE
     ON DELETE CASCADE
@@ -160,8 +167,8 @@ INSERT INTO Owners VALUES
 ('Helga', 'Hufflepuff', 60700, 4);
 
 -- Creating a Table structure for Table "Department"
-
-CREATE TABLE IF NOT EXISTS Department(
+DROP TABLE IF EXISTS Department;
+CREATE TABLE Department(
     Department_Name VARCHAR(40) NOT NULL,
     Num_Workers INT NOT NULL,
     PRIMARY KEY(Department_Name)
@@ -175,8 +182,8 @@ INSERT INTO Department VALUES
 ('Security', 7);
 
 -- Creating a Table structure for Table "Menu"
-
-CREATE TABLE IF NOT EXISTS Menu(
+DROP TABLE IF EXISTS Menu;
+CREATE TABLE Menu(
     Food_Type VARCHAR(40),
     Food_Item_ID INT,
     Item_Cost INT,
@@ -289,13 +296,14 @@ INSERT INTO Menu VALUES
 ('Chaat', 73, 62, 'Bhel Puri');
 
 -- Creating a Table structure for table "Customer"
-CREATE TABLE IF NOT EXISTS Customer(
+DROP TABLE IF EXISTS Customer;
+CREATE TABLE Customer(
     Customer_ID INT NOT NULL,
     Branch_ID INT NOT NULL,
     First_Name VARCHAR(40),
     Last_Name VARCHAR(40),
     Table_ID INT,
-    PRIMARY KEY(Customer_ID)
+    PRIMARY KEY(Customer_ID),
     CONSTRAINT Customer_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
     ON UPDATE CASCADE
     ON DELETE RESTRICT
@@ -313,11 +321,12 @@ INSERT INTO Customer VALUES
 (8, 4, 'Trienwel', 'Sinistra', 4),
 (9, 4, 'James', 'Potter', 3),
 (10, 4, 'Sirius', 'Black', 3),
-(11, 1, 'Argus', 'Filch', 2),
+(11, 1, 'Algus', 'Filch', 2),
 (12, 1, 'Norris', 'Filch', 2);
 
 -- Creating a table structure for table "Raw_Materials"
-CREATE TABLE IF NOT EXISTS Raw_Materials(
+DROP TABLE IF EXISTS Raw_Materials;
+CREATE TABLE Raw_Materials(
     Branch_ID INT NOT NULL,
     Source_ID INT NOT NULL,
     Source_Name VARCHAR(60),
@@ -340,7 +349,8 @@ INSERT INTO Raw_Materials VALUES
 (4, 1, 'Poultry');
 
 -- Creating table structure for table "Poultry"
-CREATE TABLE IF NOT EXISTS Poultry(
+DROP TABLE IF EXISTS Poultry;
+CREATE TABLE Poultry(
     Non_veg_Item VARCHAR(60),
     Item_Cost INT NOT NULL,
     Quantity FLOAT NOT NULL,
@@ -352,7 +362,8 @@ CREATE TABLE IF NOT EXISTS Poultry(
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- Creating table structure for table "Vegetable_Shop"
-CREATE TABLE IF NOT EXISTS Vegetable_Shop(
+DROP TABLE IF EXISTS Vegetable_Shop;
+CREATE TABLE Vegetable_Shop(
     Vegetable_Name VARCHAR(60),
     Item_Cost INT NOT NULL,
     Quantity FLOAT NOT NULL,
@@ -364,7 +375,8 @@ CREATE TABLE IF NOT EXISTS Vegetable_Shop(
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- Creating table structure for table "Dairy"
-CREATE TABLE IF NOT EXISTS Dairy(
+DROP TABLE IF EXISTS Dairy;
+CREATE TABLE Dairy(
     Dairy_Item VARCHAR(60),
     Item_Cost INT NOT NULL,
     Quantity FLOAT NOT NULL,
@@ -376,11 +388,120 @@ CREATE TABLE IF NOT EXISTS Dairy(
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- Creating table structure for table "Order_c"
-CREATE TABLE IF NOT EXISTS Order_c(
+DROP TABLE IF EXISTS _Order;
+CREATE TABLE _Order(
     Quantity INT NOT NULL,
     Customer_ID INT NOT NULL,
     Food_Item_ID INT NOT NULL,
     PRIMARY KEY(Customer_ID, Food_Item_ID)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+-- Creating table structure for "Staff_Mobile_Number"
+-- Multi-valued table
+DROP TABLE IF EXISTS Staff_Mobile_Number;
+CREATE TABLE Staff_Mobile_Number(
+    Staff_ID INT NOT NULL,
+    Mobile_Number INT NOT NULL,
+    CONSTRAINT STN_ibfk_1 FOREIGN KEY (Staff_ID) REFERENCES Staff (Staff_ID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+-- Creating table structure for "Owners_Mobile_Number"
+-- Multi-valued table
+DROP TABLE IF EXISTS Owners_Mobile_Number;
+CREATE TABLE Owners_Mobile_Number(
+    First_Name VARCHAR(40),
+    Last_Name VARCHAR(40),
+    Mobile_Number INT NOT NULL,
+    Constraint OMN_ibfk_1 FOREIGN KEY (First_Name, Last_Name) 
+    REFERENCES Owners (First_Name, Last_Name)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+-- Creating a table structure for table "Discount"
+DROP TABLE IF EXISTS Discount;
+CREATE TABLE Discount(
+    Food_Item_ID INT NOT NULL,
+    Discount_Amount INT NOT NULL,
+    Min_Cost INT NOT NULL,
+    Constraint Discount_ibfk_1
+    FOREIGN KEY (Food_Item_ID) REFERENCES Menu (Food_Item_ID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+-- Creating a table structure for relationship "_Orders"
+-- Customer - Orders - Menu(Food_Item)
+--              |
+--             Hotel
+-- Above is a 3 degree relationship
+DROP TABLE IF EXISTS _Orders;
+CREATE TABLE _Orders(
+    Food_Item_ID INT NOT NULL,
+    Customer_ID INT NOT NULL,
+    Branch_ID INT NOT NULL,
+    PRIMARY KEY (Food_Item_ID, Customer_ID, Branch_ID)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+-- Creating a table structure for relationship "Offers"
+-- "Hotel" offers "discount" on "order" from "Menu" to "Customer"
+-- Above is a 5 degree relationship
+DROP TABLE IF EXISTS Offers;
+CREATE TABLE Offers(
+    Food_Item_ID INT NOT NULL,
+    Customer_ID INT NOT NULL,
+    Branch_ID INT NOT NULL,
+    Min_Cost INT NOT NULL,
+    PRIMARY KEY (Food_Item_ID, Customer_ID, Branch_ID, Min_Cost)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+-- Creating a table structure for "Events"
+DROP TABLE IF EXISTS Events;
+CREATE TABLE Events(
+    Branch_ID INT NOT NULL,
+    Pin_Code INT NOT NULL,
+    Street_Number INT NOT NULL,
+    Colony_Name VARCHAR(70) NOT NULL,
+    Door_No INT NOT NULL,
+    PRIMARY KEY (Pin_Code, Street_Number, Colony_Name, Door_No)
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
+-- Creating table structure for relationship "Caterings"
+-- "Hotel" caterings for "orders" for "events".
+-- Above is a 3 degree relationship.
+DROP TABLE IF EXISTS Caterings;
+CREATE TABLE Caterings(
+    Branch_ID INT NOT NULL,
+    Pin_Code INT NOT NULL,
+    Street_Number INT NOT NULL,
+    Colony_Name VARCHAR(70) NOT NULL,
+    Door_No INT NOT NULL,
+    Food_Item_ID INT NOT NULL,
+    Customer_ID INT NOT NULL,
+    PRIMARY KEY (Food_Item_ID, Customer_ID, Branch_ID, Pin_Code, Street_Number, Colony_Name, Door_No),
+    
+    CONSTRAINT Caterings_ibfk_1
+    FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT,
+    
+    CONSTRAINT Caterings_ibfk_2
+    FOREIGN KEY (Pin_Code, Street_Number, Colony_Name, Door_No) 
+    REFERENCES Events (Pin_Code, Street_Number, Colony_Name, Door_No)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+
+    CONSTRAINT Caterings_ibfk_6
+    FOREIGN KEY (Food_Item_ID) REFERENCES Menu (Food_Item_ID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+
+    CONSTRAINT Caterings_ibfk_7
+    FOREIGN KEY (Customer_ID) REFERENCES Customer (Customer_ID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 
