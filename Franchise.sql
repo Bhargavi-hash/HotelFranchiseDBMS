@@ -216,104 +216,76 @@ CREATE TABLE Menu(
 INSERT INTO Menu VALUES
 ('Veg Starters', 1, 30, 'Achari Paneer Tikka'),
 ('Veg Starters', 2, 27, 'Hariyali Mushroom'),
-('Veg Starters', 3, 21, 'Beetroot Kebab'),
-('Veg Starters', 4, 29, 'American Cheese Potato'),
-('Veg Starters', 5, 25, 'Crispy corn'),
-('Veg Starters', 6, 27, 'Oriental grill veg'),
-('Veg Starters', 7, 27, 'Churasco Pineapple');
+('Veg Starters', 3, 25, 'Crispy corn'),
+('Veg Starters', 4, 27, 'Oriental grill veg'),
+('Veg Starters', 5, 27, 'Churasco Pineapple');
 
 -- Inserting values into table "Menu" --(Non-veg Starters)
 INSERT INTO Menu VALUES
-('Non-veg Starters', 8, 39, 'Kalmi Chicken Tikka'),
-('Non-veg Starters', 9, 41, 'Angara Tangadi'),
-('Non-veg Starters', 10, 37, 'Mutton Pudina Seekh'),
-('Non-veg Starters', 11, 36, 'Bhuna wings'),
-('Non-veg Starters', 12, 42, 'Coastal BBQ Fish'),
-('Non-veg Starters', 13, 37, 'Chilly Garlic Prawns');
+('Non-veg Starters', 6, 39, 'Kalmi Chicken Tikka'),
+('Non-veg Starters', 7, 37, 'Mutton Pudina Seekh'),
+('Non-veg Starters', 8, 36, 'Bhuna wings'),
+('Non-veg Starters', 9, 42, 'Coastal BBQ Fish'),
+('Non-veg Starters', 10, 37, 'Chilly Garlic Prawns');
 
 -- Inserting values into table "Menu" --(Soup)
 INSERT INTO Menu VALUES
-('Soup', 14, 22, 'Veg manchow Soup'),
-('Soup', 15, 41, 'Lemon coriander chicken soup');
+('Soup', 11, 22, 'Veg manchow Soup'),
+('Soup', 12, 41, 'Lemon coriander chicken soup');
 
 -- Inserting into table "Menu" --(table Dips)
 INSERT INTO Menu VALUES
-('Table Dips', 16, 10, 'Mint Chutney'),
-('Table Dips', 17, 12, 'Garlic Mayo'),
-('Table Dips', 18, 12, 'Mango Mint'),
-('Table Dips', 19, 11, 'Tomato Salsa');
+('Table Dips', 13, 10, 'Mint Chutney'),
+('Table Dips', 14, 12, 'Garlic Mayo'),
+('Table Dips', 15, 12, 'Mango Mint'),
+('Table Dips', 16, 11, 'Tomato Salsa');
 
 -- Inserting into table "Menu" --(Salads)
 INSERT INTO Menu VALUES
-('Salads', 20, 49, 'Mixed Sprout Salad'),
-('Salads', 21, 48, 'German Potato Salad'),
-('Salads', 22, 51, 'Carrot Raisin Salad'),
-('Salads', 23, 41, 'Tossed Veg Salad'),
-('Salads', 24, 54, 'Green Salad'),
-('Salads', 25, 50, 'Dahi Salad'),
-('Salads', 26, 57, 'Pickle Home Made'),
-('Salads', 27, 54, 'Fried Fryum and Baked Papad'),
-('Salads', 28, 59, 'Curd'),
-('Salads', 29, 41, 'Curd Rice');
+('Salads', 17, 48, 'German Potato Salad'),
+('Salads', 18, 51, 'Carrot Raisin Salad'),
+('Salads', 19, 54, 'Green Salad'),
+('Salads', 20, 54, 'Fried Fryum and Baked Papad');
 
 -- Inserting values into table "Menu" --(Sauce, Pasta, Eggs, Lassi)
 INSERT INTO Menu VALUES
-('Sauce', 30, 24, 'AB Dancing Sauce'),
-('Sauce', 31, 31, 'Asian Black Pepper Sauce'),
-('Sauce', 32, 28, 'Pesto Sauce'),
-('Sauce', 33, 36, 'Moroccan Sauce'),
-('Sauce', 34, 40, 'Black Bean Sauce'),
-('Sauce', 35, 48, 'Toofani Indian Curry Sauce'),
-('Pasta Counter', 36, 41, 'Red Sauce and Cheesee Sauce'),
-('Egg Counter', 37, 47, 'Fried Masala Egg'),
-('Lassi Counter', 38, 52, 'Punjabi Lassi'),
-('Lassi Counter', 39, 66, 'Dil Bahar Lassi'),
-('Lassi Counter', 40, 57, 'Chaas');
+('Sauce', 21, 31, 'Asian Black Pepper Sauce'),
+('Sauce', 22, 36, 'Moroccan Sauce'),
+('Sauce', 23, 40, 'Black Bean Sauce'),
+('Sauce', 24, 48, 'Toofani Indian Curry Sauce'),
+('Pasta Counter', 25, 41, 'Red Sauce and Cheesee Sauce'),
+('Egg Counter', 26, 47, 'Fried Masala Egg'),
+('Lassi Counter', 27, 52, 'Punjabi Lassi'),
+('Lassi Counter', 28, 66, 'Dil Bahar Lassi'),
+('Lassi Counter', 29, 57, 'Chaas');
 
 -- Inserting into table "Menu" --(Desserts)
 INSERT INTO Menu VALUES
-('Dessets', 41, 100, 'Shahi Phirni'),
-('Dessets', 42, 124, 'Angoori Gulab Jamun'),
-('Dessets', 43, 139, 'Moong Dal Halwa'),
-('Dessets', 44, 129, 'AB celebration Chocolate Pastry'),
-('Dessets', 45, 101, 'Chocolate Walnut Brownie'),
-('Dessets', 46, 147, 'Pineapple Upside Down'),
-('Dessets', 47, 124, 'Jalebi with Rabdi'),
-('Dessets', 48, 135, 'Assorted Ice Cream'),
-('Dessets', 49, 111, 'Cut Fruits'),
-('Dessets', 50, 97, 'Indrani');
+('Dessets', 30, 124, 'Angoori Gulab Jamun'),
+('Dessets', 31, 129, 'AB celebration Chocolate Pastry'),
+('Dessets', 32, 101, 'Chocolate Walnut Brownie'),
+('Dessets', 33, 135, 'Assorted Ice Cream');
 
 -- Inserting into table "Menu" --(Non-veg main course)
 INSERT INTO Menu VALUES
-('Non-veg Main Course', 51, 99, 'Mutton Rogan Josh'),
-('Non-veg Main Course', 52, 119, 'Allepy Fish Curry'),
-('Non-veg Main Course', 53, 87, 'Dum Ka Murg'),
-('Non-veg Main Course', 54, 84, 'Szechuan Chicken Fried Rice'),
-('Non-veg Main Course', 55, 105, 'Egg Lababdar'),
-('Non-veg Main Course', 56, 121, 'Hyderabadi Chicken Dum Biryani'),
-('Non-veg Main Course', 57, 99, 'Roti'),
-('Non-veg Main Course', 58, 88, 'Naan');
+('Non-veg Main Course', 34, 99, 'Mutton Rogan Josh'),
+('Non-veg Main Course', 35, 119, 'Allepy Fish Curry'),
+('Non-veg Main Course', 36, 84, 'Szechuan Chicken Fried Rice'),
+('Non-veg Main Course', 37, 121, 'Hyderabadi Chicken Dum Biryani');
 
 -- Inserting into table "Menu" --(Veg Main course)
 INSERT INTO Menu VALUES
-('Veg Main Course', 59, 76, 'Kadhai Paneer'),
-('Veg Main Course', 60, 89, 'Kachhe Kele Ka Kofta'),
-('Veg Main Course', 61, 74, 'Bhindi Dopyaza'),
-('Veg Main Course', 62, 109, 'Mushroom babycorn Takatak'),
-('Veg Main Course', 63, 80, 'Pindi Chole'),
-('Veg Main Course', 64, 121, 'Paneer Butter Masala'),
-('Veg Main Course', 65, 88, 'Steamed Basmati Rice'),
-('Veg Main Course', 66, 69, 'Hyderbadi Veg Dum Viryani'),
-('Veg Main Course', 67, 105, 'Butter Garlic Noodles'),
-('Veg Main Course', 68, 100, 'Lahsooni Dal Tadka'),
-('Veg Main Course', 69, 62, 'AB Special Dal');
+('Veg Main Course', 38, 76, 'Kadhai Paneer'),
+('Veg Main Course', 39, 121, 'Paneer Butter Masala'),
+('Veg Main Course', 40, 69, 'Hyderbadi Veg Dum Viryani'),
+('Veg Main Course', 41, 105, 'Butter Garlic Noodles');
 
 -- Inserting values into table "menu" --(Chaat)
 INSERT INTO Menu VALUES
-('Chaat', 70, 74, 'Ragda Pattice'),
-('Chaat', 71, 84, 'Pani Pauri'),
-('Chaat', 72, 64, 'Dahi Puri'),
-('Chaat', 73, 62, 'Bhel Puri');
+('Chaat', 42, 74, 'Ragda Pattice'),
+('Chaat', 43, 84, 'Pani Pauri'),
+('Chaat', 44, 64, 'Dahi Puri'),
+('Chaat', 45, 62, 'Bhel Puri');
 
 -------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------------------------------------------------------------------------
@@ -322,7 +294,7 @@ INSERT INTO Menu VALUES
 
 DROP TABLE IF EXISTS Customer;
 CREATE TABLE Customer(
-    Customer_ID INT NOT NULL,
+    Customer_ID INT NOT NULL AUTO_INCREMENT,
     Branch_ID INT NOT NULL,
     First_Name VARCHAR(40),
     Last_Name VARCHAR(40),
@@ -331,7 +303,7 @@ CREATE TABLE Customer(
     CONSTRAINT Customer_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
     ON UPDATE CASCADE
     ON DELETE RESTRICT
-)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+)ENGINE = InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET = utf8;
 
 -- Inserting values into table "Customer"
 
@@ -573,7 +545,18 @@ CREATE TABLE _Orders(
     Food_Item_ID INT NOT NULL,
     Customer_ID INT NOT NULL,
     Branch_ID INT NOT NULL,
-    PRIMARY KEY (Food_Item_ID, Customer_ID, Branch_ID)
+    PRIMARY KEY (Food_Item_ID, Customer_ID, Branch_ID),
+    Constraint _Orders_ibfk_01 FOREIGN KEY (Food_Item_ID) REFERENCES Menu (Food_Item_ID)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT,
+
+    Constraint _Orders_ibfk_02 FOREIGN KEY (Customer_ID) REFERENCES Customer (Customer_ID)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT,
+
+    Constraint _Orders_ibfk_03 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
+    ON UPDATE CASCADE
+    ON DELETE RESTRICT
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- Inserting values into "_Orders"
@@ -600,7 +583,23 @@ CREATE TABLE Offers(
     Customer_ID INT NOT NULL,
     Branch_ID INT NOT NULL,
     Min_Cost INT NOT NULL,
-    PRIMARY KEY (Food_Item_ID, Customer_ID, Branch_ID, Min_Cost)
+    PRIMARY KEY (Food_Item_ID, Customer_ID, Branch_ID, Min_Cost),
+
+    Constraint Offers_ibfk_1 FOREIGN KEY (Food_Item_ID) REFERENCES Menu (Food_Item_ID)
+    ON UPDATE CASCADE
+    ON DELETE CASCADE,
+
+    Constraint Offers_ibfk_2 FOREIGN KEY (Customer_ID) REFERENCES Customer (Customer_ID)
+    ON UPDATE CASCADE
+    on DELETE CASCADE,
+
+    Constraint Offers_ibfk_3 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
+    ON UPDATE CASCADE
+    on DELETE CASCADE,
+
+    Constraint Offers_ibfk_4 FOREIGN KEY (Min_Cost) REFERENCES Discount (Min_Cost)
+    ON UPDATE CASCADE
+    on DELETE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- Inserting values into "Offers"
