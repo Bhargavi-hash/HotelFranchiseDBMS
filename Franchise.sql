@@ -205,11 +205,11 @@ INSERT INTO Department VALUES
 DROP TABLE IF EXISTS Menu;
 CREATE TABLE Menu(
     Food_Type VARCHAR(40),
-    Food_Item_ID INT,
+    Food_Item_ID INT AUTO_INCREMENT,
     Item_Cost INT,
     Food_Item VARCHAR(70),
     PRIMARY KEY(Food_Item_ID)
-)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+)ENGINE = InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET = utf8;
 
 -- Inserting values into table "Menu" --(Veg Starters)
 
@@ -226,7 +226,7 @@ INSERT INTO Menu VALUES
 ('Non-veg Starters', 7, 37, 'Mutton Pudina Seekh'),
 ('Non-veg Starters', 8, 36, 'Bhuna wings'),
 ('Non-veg Starters', 9, 42, 'Coastal BBQ Fish'),
-('Non-veg Starters', 10, 37, 'Chilly Garlic Prawns');
+('Non-veg Starters', 10, 37, 'Chilly menuGarlic Prawns');
 
 -- Inserting values into table "Menu" --(Soup)
 INSERT INTO Menu VALUES
