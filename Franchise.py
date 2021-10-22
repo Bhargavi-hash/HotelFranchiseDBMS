@@ -8,6 +8,7 @@ from tabulate import tabulate
 from os import system, name
 from time import sleep
 
+from functions import *
 #***************************************** Clear screen option implemented **************************************************
 
 def clear():
@@ -220,16 +221,16 @@ while(1):
             
             if(inp == '1'):
                 Display()
-            # elif(inp == '2'):
-            #     addOptions()
+            elif(inp == '2'):
+                addOptions(cur,con)
             # elif(inp == '3'):
             #     deleteOptions()
             # elif(inp == '4'):
             #     updateOptions()
-            # elif(inp == '5'):
-            #         exitflag = 1
-            #         print("Bye")
-            #         break
+            elif(inp == '7'):
+                    exitflag = 1
+                    print("Bye")
+                    break
             
             print("Press enter to continue ... ")
             x=input()
