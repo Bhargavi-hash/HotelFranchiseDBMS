@@ -2,7 +2,6 @@ import subprocess as sp
 import pymysql
 import pymysql.cursors
 import sys
-from main import *
 from colorama import Fore, Style
 from simple_colors import *
 from tabulate import tabulate

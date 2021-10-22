@@ -39,7 +39,9 @@ INSERT INTO Hotel VALUES
 (1, 400065, 23, 'Privet Drive', 102),
 (2, 400015, 9, 'KingsCross', 73),
 (3, 400104, 17, 'Grimauld', 12),
-(4, 400128, 12, 'Hogsmead', 3);
+(4, 400128, 12, 'Hogsmead', 3),
+(5,400000,11,'Replace',9);
+
 
 ---------------------------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------------------------
@@ -51,7 +53,7 @@ CREATE TABLE Furniture(
     Furniture_Name VARCHAR(40),
     Quantity INT,
     Branch_ID INT,
-    -- PRIMARY KEY(Furniture_Name),
+    PRIMARY KEY(Furniture_Name,Branch_ID),
     CONSTRAINT Furniture_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
     ON UPDATE CASCADE
     ON DELETE CASCADE
@@ -75,7 +77,7 @@ INSERT INTO Furniture VALUES
 
 DROP TABLE IF EXISTS Staff;
 CREATE TABLE IF NOT EXISTS Staff(
-    Staff_ID INT NOT NULL,
+    Staff_ID INT NOT NULL AUTO_INCREMENT,
     Branch_ID INT NOT NULL,
     First_Name VARCHAR(40) NOT NULL,
     Last_Name VARCHAR(40),
@@ -86,10 +88,10 @@ CREATE TABLE IF NOT EXISTS Staff(
     Shift VARCHAR(40) NOT NULL,
     Department_Name VARCHAR(40) NOT NULL,
     PRIMARY KEY(Staff_ID),
-    CONSTRAINT Staff_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
+    CONSTRAINT `Staff_ibfk_1` FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
     ON UPDATE CASCADE
     ON DELETE RESTRICT
-)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+)ENGINE = InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET = utf8;
 
 -- Inserting values into table "Staff" -- (First Hotel)
 INSERT INTO Staff VALUES
@@ -166,7 +168,7 @@ CREATE TABLE Owners(
     Monthly_Rent INT NOT NULL,
     Branch_ID INT NOT NULL,
     PRIMARY KEY(First_Name, Last_Name),
-    CONSTRAINT Owners_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
+    CONSTRAINT `Owners_ibfk_1` FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
@@ -177,7 +179,9 @@ INSERT INTO Owners VALUES
 ('Godric', 'Gryffindor', 40000, 1),
 ('Salazar', 'Slytherin', 70000, 2),
 ('Rowena', 'Ravenclaw', 95000, 3),
-('Helga', 'Hufflepuff', 60700, 4);
+('Helga', 'Hufflepuff', 60700, 4),
+('Replace','Replace',90000,5);
+
 
 --------------------------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------------------------
@@ -300,7 +304,7 @@ CREATE TABLE Customer(
     Last_Name VARCHAR(40),
     Table_ID INT,
     PRIMARY KEY(Customer_ID),
-    CONSTRAINT Customer_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
+    CONSTRAINT `Customer_ibfk_1` FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
     ON UPDATE CASCADE
     ON DELETE RESTRICT
 )ENGINE = InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET = utf8;
@@ -458,8 +462,8 @@ INSERT INTO _Order VALUES
 DROP TABLE IF EXISTS Staff_Mobile_Number;
 CREATE TABLE Staff_Mobile_Number(
     Staff_ID INT NOT NULL,
-    Mobile_Number INT NOT NULL,
-    CONSTRAINT STN_ibfk_1 FOREIGN KEY (Staff_ID) REFERENCES Staff (Staff_ID)
+    Mobile_Number BIGINT,
+    CONSTRAINT `STN_ibfk_1` FOREIGN KEY (Staff_ID) REFERENCES Staff (Staff_ID)
     ON UPDATE CASCADE
     ON DELETE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
@@ -485,8 +489,8 @@ DROP TABLE IF EXISTS Owners_Mobile_Number;
 CREATE TABLE Owners_Mobile_Number(
     First_Name VARCHAR(40),
     Last_Name VARCHAR(40),
-    Mobile_Number INT NOT NULL,
-    Constraint OMN_ibfk_1 FOREIGN KEY (First_Name, Last_Name) 
+    Mobile_Number BIGINT NOT NULL,
+    Constraint `OMN_ibfk_1` FOREIGN KEY (First_Name, Last_Name) 
     REFERENCES Owners (First_Name, Last_Name)
     ON UPDATE CASCADE
     ON DELETE CASCADE
@@ -502,7 +506,8 @@ INSERT INTO Owners_Mobile_Number VALUES
 ('Salazar', 'Slytherin', 8133500010),
 ('Salazar', 'Slytherin', 8123500010),
 ('Rowena', 'Ravenclaw', 1234567890),
-('Helga', 'Hufflepuff', 6000500010);
+('Helga', 'Hufflepuff', 6000500010),
+('Replace','Replace',8181800999);
 
 -----------------------------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------------------------
@@ -514,7 +519,8 @@ CREATE TABLE Discount(
     Food_Item_ID INT NOT NULL,
     Discount_Amount INT NOT NULL,
     Min_Cost INT NOT NULL,
-    Constraint Discount_ibfk_1
+    PRIMARY KEY(Food_Item_ID,Min_Cost),
+    Constraint `Discount_ibfk_1`
     FOREIGN KEY (Food_Item_ID) REFERENCES Menu (Food_Item_ID)
     ON UPDATE CASCADE
     ON DELETE CASCADE
@@ -546,15 +552,15 @@ CREATE TABLE _Orders(
     Customer_ID INT NOT NULL,
     Branch_ID INT NOT NULL,
     PRIMARY KEY (Food_Item_ID, Customer_ID, Branch_ID),
-    Constraint _Orders_ibfk_01 FOREIGN KEY (Food_Item_ID) REFERENCES Menu (Food_Item_ID)
+    Constraint `_Orders_ibfk_01` FOREIGN KEY (Food_Item_ID) REFERENCES Menu (Food_Item_ID)
     ON UPDATE CASCADE
     ON DELETE RESTRICT,
 
-    Constraint _Orders_ibfk_02 FOREIGN KEY (Customer_ID) REFERENCES Customer (Customer_ID)
+    Constraint `_Orders_ibfk_02` FOREIGN KEY (Customer_ID) REFERENCES Customer (Customer_ID)
     ON UPDATE CASCADE
     ON DELETE RESTRICT,
 
-    Constraint _Orders_ibfk_03 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
+    Constraint `_Orders_ibfk_03` FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
     ON UPDATE CASCADE
     ON DELETE RESTRICT
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
@@ -585,19 +591,19 @@ CREATE TABLE Offers(
     Min_Cost INT NOT NULL,
     PRIMARY KEY (Food_Item_ID, Customer_ID, Branch_ID, Min_Cost),
 
-    Constraint Offers_ibfk_1 FOREIGN KEY (Food_Item_ID) REFERENCES Menu (Food_Item_ID)
+    Constraint `Offers_ibfk_1` FOREIGN KEY (Food_Item_ID) REFERENCES Menu (Food_Item_ID)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
 
-    Constraint Offers_ibfk_2 FOREIGN KEY (Customer_ID) REFERENCES Customer (Customer_ID)
+    Constraint `Offers_ibfk_2` FOREIGN KEY (Customer_ID) REFERENCES Customer (Customer_ID)
     ON UPDATE CASCADE
     on DELETE CASCADE,
 
-    Constraint Offers_ibfk_3 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
+    Constraint `Offers_ibfk_3` FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
     ON UPDATE CASCADE
     on DELETE CASCADE,
 
-    Constraint Offers_ibfk_4 FOREIGN KEY (Min_Cost) REFERENCES Discount (Min_Cost)
+    Constraint `Offers_ibfk_4` FOREIGN KEY (Min_Cost) REFERENCES Discount (Min_Cost)
     ON UPDATE CASCADE
     on DELETE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = utf8;
@@ -653,23 +659,23 @@ CREATE TABLE Caterings(
     Customer_ID INT NOT NULL,
     PRIMARY KEY (Food_Item_ID, Customer_ID, Branch_ID, Pin_Code, Street_Number, Colony_Name, Door_No),
     
-    CONSTRAINT Caterings_ibfk_1
+    CONSTRAINT `Caterings_ibfk_1`
     FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
     ON UPDATE CASCADE
     ON DELETE RESTRICT,
     
-    CONSTRAINT Caterings_ibfk_2
+    CONSTRAINT `Caterings_ibfk_2`
     FOREIGN KEY (Pin_Code, Street_Number, Colony_Name, Door_No) 
     REFERENCES Events (Pin_Code, Street_Number, Colony_Name, Door_No)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
 
-    CONSTRAINT Caterings_ibfk_6
+    CONSTRAINT `Caterings_ibfk_6`
     FOREIGN KEY (Food_Item_ID) REFERENCES Menu (Food_Item_ID)
     ON UPDATE CASCADE
     ON DELETE CASCADE,
 
-    CONSTRAINT Caterings_ibfk_7
+    CONSTRAINT `Caterings_ibfk_7`
     FOREIGN KEY (Customer_ID) REFERENCES Customer (Customer_ID)
     ON UPDATE CASCADE
     ON DELETE CASCADE

@@ -1,17 +1,21 @@
 import subprocess as sp
 import pymysql
 import pymysql.cursors
-# import global_
 import sys
-from update import *
-from display import *
-from clear import *
-from viewTable import *
+
 from colorama import Fore, Style
 from simple_colors import *
 from tabulate import tabulate
 from os import system, name
 from time import sleep
+
+from Update import *
+from Clear import *
+from Functions import *
+from add import *
+from Display import *
+from ViewTable import *
+
 
 # *************** Declaring global variables ********************
 
@@ -60,17 +64,19 @@ while(1):
             inp = input(cyan("\nCHOICE ? ", 'bold'))
             
             if(inp == '1'):
-                Display()
-            # elif(inp == '2'):
-            #     addOptions()
+                Display(cur,con)
+            elif(inp == '2'):
+                addOptions(cur,con)
             # elif(inp == '3'):
-            #     deleteOptions()
+            #     deleteOptions(cur,con)
             elif(inp == '4'):
-                Update()
-            # elif(inp == '5'):
-            #         exitflag = 1
-            #         print("Bye")
-            #         break
+                Update(cur,con)
+            elif(inp=='5'):
+                SearchOptions(cur,con)
+            elif(inp == '7'):
+                    exitflag = 1
+                    print("Thanks for Coming!!\nSee you again")
+                    break
             
             print("Press enter to continue ... ")
             x=input()

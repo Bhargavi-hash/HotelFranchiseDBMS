@@ -2,9 +2,9 @@ import subprocess as sp
 import pymysql
 import pymysql.cursors
 import sys
-from main import *
-from clear import *
-from viewTable import *
+
+from Clear import *
+
 from colorama import Fore, Style
 from simple_colors import *
 from tabulate import tabulate
@@ -14,7 +14,7 @@ from time import sleep
 
 #******************************************** Update options implemented ****************************************************
 
-def Update():
+def Update(cur,con):
 
     clear()
     

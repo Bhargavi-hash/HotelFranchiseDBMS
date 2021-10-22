@@ -2,47 +2,22 @@ import subprocess as sp
 import pymysql
 import pymysql.cursors
 import sys
+
+
 from colorama import Fore, Style
 from simple_colors import *
 from tabulate import tabulate
 from os import system, name
 from time import sleep
 
-from functions import *
-#***************************************** Clear screen option implemented **************************************************
+# from global_ import con, cur
 
-def clear():
-  
-    # for windows
-    if name == 'nt':
-        _ = system('cls')
-  
-    # for mac and linux(here, os.name is 'posix')
-    else:
-        _ = system('clear')
-
-#***************************************** Printing table to screen *********************************************************
-
-def viewTable(rows):
-
-    a = []
-    try:
-        a.append(list(rows[0].keys()))
-    except:
-        print("\n-----------------\nEMPTY TABLE\n-----------------\n")   
-        return
-    for row in rows:
-        b = []
-        for k in row.keys():
-            b.append(row[k])
-        a.append(b)
-    print(tabulate(a, tablefmt="psql", headers="firstrow"))
-    print()
-    return
+from Clear import *
+from ViewTable import *
 
 #************************************* Display to screen options implemented **************************************************
 
-def Display():
+def Display(cur,con):
     clear()     # Clearing screen before displaying further options
     
     # Displaying options to choose
@@ -72,6 +47,8 @@ def Display():
     elif viewOption == '2':
         
         clear()
+
+        #****************************** Further options to view in staff details ***************************************
         print(magenta("------------- Select one from below -------------\n", 'bold'))
         print(yellow("--> 1. Branch-1 Staff details"))
         print(yellow("--> 2. Branch-2 Staff details"))
@@ -96,6 +73,8 @@ def Display():
     elif viewOption == '3':
         
         clear()
+
+        #****************************** Further options to view in customer details ******************************************
         print(magenta("------------- Select one from below -------------\n", 'bold'))
         print(yellow("--> 1. Customer details at Branch-1"))
         print(yellow("--> 2. Customer details at Branch-2"))
@@ -124,6 +103,8 @@ def Display():
     elif viewOption == '6':
         
         clear()
+
+        #******************************** Further options to view in Menu ******************************************
         print(magenta("------------- Select one from below -------------\n", 'bold'))
         print(yellow("--> 1.  Veg Starters"))
         print(yellow("--> 2.  Non veg starters"))
@@ -179,61 +160,3 @@ def Display():
     rows = cur.fetchall()
     viewTable(rows)
     con.commit()
-
-#******************************************** Program starts here ************************************************************
-
-while(1):
-    tmp = sp.call('clear', shell=True)
-    username = input(green("Username: ", 'bold'))
-    password = input(green("Password: ", 'bold'))
-
-    try:
-        con = pymysql.connect(host='localhost',
-                              user=username,
-                              password=password,
-                              db='Franchise',
-                              cursorclass=pymysql.cursors.DictCursor)
-    except Exception as e:
-        print(e)
-        tmp = sp.call('clear', shell=True)
-        print(red('Connection Failed:', 'bold'))
-        print(Fore.RED + "Credentials entered are incorrect or user doesn't have access to database")
-        tmp = input(Fore.GREEN + "Enter any key to CONTINUE > ")
-        print(Style.RESET_ALL)
-        continue
-
-    with con:
-        cur = con.cursor()
-        exitflag = 0
-        while(1):
-            tmp = sp.call('clear', shell=True)
-            # refreshDatabase()
-            print(blue("----------- CHOOSE AN OPTION -----------\n", 'bold'))
-            print(yellow("\t--> 1.  Display Options", 'bold'))
-            print(yellow("\t--> 2.  Addition Options", 'bold'))
-            print(yellow("\t--> 3.  Deletion Options", 'bold'))
-            print(yellow("\t--> 4.  Modify/Update Options", 'bold'))
-            print(yellow("\t--> 5.  Search Options", 'bold'))
-            print(yellow("\t--> 6.  Finance Analysis Options", 'bold'))
-            print(yellow("\t--> 7.  Quit", 'bold'))
-            
-            inp = input(cyan("\nCHOICE ? ", 'bold'))
-            
-            if(inp == '1'):
-                Display()
-            elif(inp == '2'):
-                addOptions(cur,con)
-            # elif(inp == '3'):
-            #     deleteOptions()
-            # elif(inp == '4'):
-            #     updateOptions()
-            elif(inp == '7'):
-                    exitflag = 1
-                    print("Bye")
-                    break
-            
-            print("Press enter to continue ... ")
-            x=input()
-
-    if exitflag == 1:
-        break
