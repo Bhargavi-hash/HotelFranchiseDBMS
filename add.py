@@ -3,6 +3,7 @@ import pymysql
 import pymysql.cursors
 from colorama import Fore, Style
 
+
 from colorama import Fore, Style
 from simple_colors import *
 from tabulate import tabulate
