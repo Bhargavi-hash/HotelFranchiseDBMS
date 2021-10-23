@@ -8,3 +8,5 @@ don't forget:
 4. add finance.py @bhargs
 5. add delete.py @pulse
 6. there are 5 branchs check accordingly @bhargs :)
+7. clear for all options (@me)
+8. colors if time permitts hehe :)
