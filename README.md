@@ -1,5 +1,10 @@
-# DBMS_project-HotelFranchise
-Data application project
+# DBMS project-HotelFranchise
+Data and application project
+
+By TEAM
+    - Kurukunda Bhargavi
+    - Pampulapati Pallavi
+    - Greeshma Amaraneni
 
 don't forget:
 1. age
