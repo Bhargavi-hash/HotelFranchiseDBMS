@@ -3,6 +3,7 @@ import pymysql.cursors
 from ViewTable import *
 from Clear import *
 
+
 def Selection(cur, con):
     try:
         print("Choose an Option to get data")
@@ -304,10 +305,9 @@ def Aggregate(cur, con):
     return
 
 
-
 def Search(cur, con):
     try:
-        print("Choose an Option to get analyse data")
+        print(blue("Choose an Option to get analyse data",'bold'))
         choices = ["Owners", "Staff"]
 
         for var in range(len(choices)):
@@ -316,20 +316,44 @@ def Search(cur, con):
         val = int(input("Enter your choice: "))
 
         if(val == 1):
-            Name=input("Enter part of Owner Name to be matched")                    
-            query = "SELECT * FROM Owners WHERE FirstName LIKE '%'%s'%' OR Last_Name LIKE '%'%s'%'" % (Name,Name)
-            cur.execute(query)
+            clear()
+            Name = input("Enter which part of Owner Name to be matched: ")
+
+            cur.execute(
+                "SELECT * FROM Owners WHERE First_Name LIKE CONCAT('%%',%s,'%%') OR Last_Name LIKE CONCAT('%%',%s,'%%')", (Name, Name,))
             rows = cur.fetchall()
             viewTable(rows)
 
-
         elif(val == 2):
-            No=9999999999                  
-            No=input("Enter part of Staff Mobile Number to be matched")                    
-            query = "SELECT * FROM Staff_Mobile_Number WHERE Phone_Number LIKE CONCAT('%','%d','%')" % (No)
-            cur.execute(query)
-            rows = cur.fetchall()
-            viewTable(rows)            
+            No = 9999999999
+            clear()
+
+            print(blue("Enter part of Staff Mobile Number to be matched: ",'bold'))
+            options = ["First", "Middle", "last"]
+            for var in range(len(options)):
+                print(var+1, ". ", options[var], sep="")
+
+            option = int(input("Enter your choice: "))
+            clear()
+            No=input("Enter part of the Mobile Number to be matched: ")
+            if(option == 1):
+                cur.execute(
+                    "SELECT * FROM Staff_Mobile_Number WHERE Mobile_Number LIKE CONCAT(%s,'%%')", (No,))
+                rows = cur.fetchall()
+                viewTable(rows)
+            elif(option==2):
+                cur.execute(
+                    "SELECT * FROM Staff_Mobile_Number WHERE Mobile_Number LIKE CONCAT('%%',%s,'%%')", (No,))
+                rows = cur.fetchall()
+                viewTable(rows)
+            elif(option==3):
+                cur.execute(
+                    "SELECT * FROM Staff_Mobile_Number WHERE Mobile_Number LIKE CONCAT('%%',%s)", (No,))
+                rows = cur.fetchall()
+                viewTable(rows)
+            else:
+                print(yellow("Oops!! You Entered an invalid choice"))
+                return
 
         else:
             print(yellow("Oops!! You Entered an invalid choice"))
@@ -340,7 +364,7 @@ def Search(cur, con):
         print(red("Try with different data"))
         return
 
-    print(green("Sucessfull Retrieval!!",'bold'))
+    print(green("Sucessfull Retrieval!!", 'bold'))
     return
 
 
@@ -356,100 +380,106 @@ def Analysis(cur, con):
     try:
         if(val == 1):
 
-            Customer_ID=int(input("Enter Customer-ID: "))
-            query = "SELECT Table_ID,Branch_ID FROM Customer WHERE Customer_ID='%d'" % (Customer_ID)
+            Customer_ID = int(input("Enter Customer-ID: "))
+            query = "SELECT Table_ID,Branch_ID FROM Customer WHERE Customer_ID='%d'" % (
+                Customer_ID)
             cur.execute(query)
-            x=cur.fetchone()
+            x = cur.fetchone()
 
             if(not(bool(x))):
                 print("You entered an invalid Customer-ID")
                 con.rollback()
                 return
 
-            print("Details of Customer with ID:",Customer_ID)
-            print("Table-ID:",x["Table_ID"])
-            print("Branch-ID:",x["Branch_ID"])
+            print("Details of Customer with ID:", Customer_ID)
+            print("Table-ID:", x["Table_ID"])
+            print("Branch-ID:", x["Branch_ID"])
 
-            query="SELECT Food_Item_ID,Quantity FROM _Order WHERE Customer_ID='%d'" % (Customer_ID)            
+            query = "SELECT Food_Item_ID,Quantity FROM _Order WHERE Customer_ID='%d'" % (
+                Customer_ID)
             cur.execute(query)
-            rows=cur.fetchall()
+            rows = cur.fetchall()
             if(len(rows)):
                 print(magenta("\nFood Item Ordered and Quantity: "))
             else:
                 print(magenta("No orders by the Customer"))
-                return 
+                return
 
             for row in rows:
-                Food_ID=int(row["Food_Item_ID"])
-                query="SELECT Food_Item FROM Menu WHERE Food_Item_ID='%d'" % (Food_ID)
+                Food_ID = int(row["Food_Item_ID"])
+                query = "SELECT Food_Item FROM Menu WHERE Food_Item_ID='%d'" % (
+                    Food_ID)
                 cur.execute(query)
-                x=cur.fetchone()
-                print("Food-Item:",x["Food_Item"])
-                print("Quantity:",row["Quantity"])
+                x = cur.fetchone()
+                print("Food-Item:", x["Food_Item"])
+                print("Quantity:", row["Quantity"])
 
         elif(val == 2):
 
-            Food_Item=input("Enter Food-Item Name: ")
-            query="SELECT Food_Item_ID,Food_Type,Item_Cost FROM Menu WHERE Food_Item='%s'" % (Food_Item)
+            Food_Item = input("Enter Food-Item Name: ")
+            query = "SELECT Food_Item_ID,Food_Type,Item_Cost FROM Menu WHERE Food_Item='%s'" % (
+                Food_Item)
             cur.execute(query)
-            x=cur.fetchone()
+            x = cur.fetchone()
 
             if(not(bool(x))):
                 print("You entered an invalid food item name")
                 con.rollback()
                 return
 
-            print("\nInformation of Food-Item:",Food_Item)
-            print("Food-Type:",x["Food_Type"])
-            print("Item cost:",x["Item_Cost"])
+            print("\nInformation of Food-Item:", Food_Item)
+            print("Food-Type:", x["Food_Type"])
+            print("Item cost:", x["Item_Cost"])
 
-            query="SELECT Customer_ID,Quantity FROM _Order WHERE Food_Item_ID='%d'" % (int(x["Food_Item_ID"]))            
+            query = "SELECT Customer_ID,Quantity FROM _Order WHERE Food_Item_ID='%d'" % (
+                int(x["Food_Item_ID"]))
             cur.execute(query)
-            rows=cur.fetchall()
+            rows = cur.fetchall()
             if(len(rows)):
-               print(magenta("Current orders by Customers and quantity:"))
+                print(magenta("Current orders by Customers and quantity:"))
             else:
                 print(magenta("No orders on this item currently available"))
-                return   
-            
-            for row in rows:      
-                print("Customer-ID:",row["Customer_ID"])
-                print("Quantity:",row["Quantity"])
-                
+                return
+
+            for row in rows:
+                print("Customer-ID:", row["Customer_ID"])
+                print("Quantity:", row["Quantity"])
+
         elif(val == 3):
 
-            Branch_ID=int(input("Enter the Branch-ID to get information: "))                       
-            query = "SELECT Food_Item_ID,Customer_ID FROM _Orders WHERE Branch_ID='%d'" % (Branch_ID)
-            
+            Branch_ID = int(input("Enter the Branch-ID to get information: "))
+            query = "SELECT Food_Item_ID,Customer_ID FROM _Orders WHERE Branch_ID='%d'" % (
+                Branch_ID)
+
             if not(Branch_ID > 0 and Branch_ID < 6):
                 print("You entered a Invalid Branch-ID")
                 return
 
             cur.execute(query)
-            rows=cur.fetchall()
+            rows = cur.fetchall()
 
             if(len(rows)):
-               print(magenta("Current orders by Customers and quantity: "))
+                print(magenta("Current orders by Customers and quantity: "))
             else:
                 print(magenta("No orders on this item currently available"))
-                return   
-            
-            for row in rows:      
-                Food_ID=int(row["Food_Item_ID"])
-                query="SELECT Food_Item FROM Menu WHERE Food_Item_ID='%d'" % (Food_ID)
+                return
+
+            for row in rows:
+                Food_ID = int(row["Food_Item_ID"])
+                query = "SELECT Food_Item FROM Menu WHERE Food_Item_ID='%d'" % (
+                    Food_ID)
                 cur.execute(query)
-                x=cur.fetchone()
+                x = cur.fetchone()
 
                 if(not(bool(x))):
                     continue
 
-                print("Customer-ID:",row["Customer_ID"])
-                print("Food-Item:",x["Food_Item"])
-                
+                print("Customer-ID:", row["Customer_ID"])
+                print("Food-Item:", x["Food_Item"])
+
         else:
             print(yellow("Oops!! You Entered an invalid choice"))
-
-        return
+            return
 
     except Exception as e:
         print(e)
