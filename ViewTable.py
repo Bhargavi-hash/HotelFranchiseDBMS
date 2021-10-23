@@ -6,7 +6,6 @@ from colorama import Fore, Style
 from simple_colors import *
 from tabulate import tabulate
 from os import system, name
-from time import sleep
 
 
 #***************************************** Printing table to screen *********************************************************

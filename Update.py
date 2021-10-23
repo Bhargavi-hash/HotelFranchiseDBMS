@@ -321,7 +321,4 @@ def Update(cur,con):
         return
     
     print(green("Data updated succesfully :)", 'bold'))
-    
-    
-
-
+        

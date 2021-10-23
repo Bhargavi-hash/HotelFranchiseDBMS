@@ -72,9 +72,9 @@ while(1):
             elif(inp == '4'):
                 Update(cur,con)
             elif(inp=='5'):
-                SearchOptions(cur,con)
-            elif(inp=='6'):
                 Retrievals(cur,con)
+            # elif(inp=='6'):
+            #     Retrievals(cur,con)
             elif(inp == '7'):
                     exitflag = 1
                     print(blue("\n\nThanks for Coming!!\nSee you again\n",'bold'))
