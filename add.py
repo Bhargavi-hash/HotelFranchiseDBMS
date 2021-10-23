@@ -7,12 +7,13 @@ from colorama import Fore, Style
 from colorama import Fore, Style
 from simple_colors import *
 from tabulate import tabulate
-
+from Clear import *
 
 def Add_Events(cur, con):
 
     ######Taking in the input##############
     try:
+        clear()
         print("Enter the following details of the Event:")
         Full_Name = (input("Full Name of the costumer: ")).split(' ')
         Full_Name.append(" ")
@@ -88,6 +89,7 @@ def Add_Events(cur, con):
 def Add_Order(cur, con):
 
     ######Taking in the input##############
+    clear()
     try:
         print("Enter the following details of the Order:")
         Full_Name = (input("Full Name of the costumer: ")).split(' ')
@@ -157,6 +159,7 @@ def Add_Order(cur, con):
 def Add_Menu(cur, con):
 
     #############Taking in the input##############
+    clear()
     try:
         print("Enter the details of food-item to add: ")
         Food_Item = input("Food Item Name: ")
@@ -203,6 +206,7 @@ def Add_Menu(cur, con):
 def Add_Furniture(cur, con):
 
     #############Taking in the input##############
+    clear()
     try:
         print("Enter the following details of furniture: ")
         Branch = int(input("Enter the Branch-ID: "))
@@ -245,6 +249,7 @@ def Add_Furniture(cur, con):
 def Add_Staff(cur, con):
 
     #############Taking in the input##############
+    clear()
     try:
         print("Enter the following details of Staff: ")
         Full_Name = (input("Full Name of the staff: ")).split(' ')
@@ -311,6 +316,7 @@ def Add_Staff(cur, con):
 def Add_Raw_Materials(cur, con):
 
     #############Taking in the input##############
+    clear()
     try:
        print("Enter the details of raw materials: ")
        branch_id = int(input("Branch ID: "))

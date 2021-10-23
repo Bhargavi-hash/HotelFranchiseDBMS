@@ -6,15 +6,16 @@ from Clear import *
 
 def Selection(cur, con):
     try:
+        clear()
         print("Choose an Option to get data")
         choices = ["Menu", "Staff", "Furniture"]
 
         for var in range(len(choices)):
             print(var+1, ". ", choices[var], sep="")
-        clear()
         val = int(input("Enter your choice: "))
 
         if(val == 1):
+            clear()
             Food_Type = input("Enter Food-Type: ")
             query = "SELECT * FROM Menu WHERE Food_Type='%s'" % (Food_Type)
             cur.execute(query)
@@ -22,6 +23,7 @@ def Selection(cur, con):
             viewTable(rows)
 
         elif(val == 2):
+            clear()
             Dept = input("Enter Department: ")
             Branch_ID = int(input("Enter Branch-ID: "))
             Name = (input("Enter Name: ")).split(" ")
@@ -35,6 +37,7 @@ def Selection(cur, con):
             viewTable(rows)
 
         elif(val == 3):
+            clear()
             Branch_ID = int(input("Enter Branch-ID: "))
             Furniture_Type = input("Enter Furniture Name: ")
 
@@ -45,6 +48,7 @@ def Selection(cur, con):
             viewTable(rows)
         else:
             print(yellow("Oops!! You Entered an invalid choice"))
+            return
 
     except Exception as e:
         print(e)
@@ -57,6 +61,7 @@ def Selection(cur, con):
 
 def Projection(cur, con):
     try:
+        clear()
         print("Choose an Option to get data")
         choices = ["Owners", "Menu", "Raw-Material", "Staff"]
 
@@ -66,6 +71,7 @@ def Projection(cur, con):
         val = int(input("Enter your choice: "))
 
         if(val == 1):
+            clear()
 
             Rent = int(input("Enter Monthly-rent: "))
             options = ["greater than ", "less than ", "equal to"]
@@ -99,6 +105,8 @@ def Projection(cur, con):
 
         elif(val == 2):
 
+            clear()
+
             Cost = int(input("Enter Cost of Food-Item: "))
             options = ["greater than ", "less than ", "equal to"]
             print("Do you want Cost of item value ")
@@ -127,8 +135,10 @@ def Projection(cur, con):
                 viewTable(rows)
             else:
                 print(yellow("Oops!! You Entered an invalid choice"))
+                return
 
         elif(val == 3):
+            clear()
 
             Branch_ID = int(input("Enter Branch-ID: "))
             Quantity = float(input("Enter Quantity: "))
@@ -172,6 +182,7 @@ def Projection(cur, con):
                 viewTable(rows)
             else:
                 print(yellow("Oops!! You Entered an invalid choice"))
+                return
 
         elif(val == 4):
 
@@ -205,6 +216,7 @@ def Projection(cur, con):
                 viewTable(rows)
             else:
                 print(yellow("Oops!! You Entered an invalid choice"))
+                return
 
         else:
             print(yellow("Oops!! You Entered an invalid choice"))
@@ -221,6 +233,7 @@ def Projection(cur, con):
 
 def Aggregate(cur, con):
     try:
+        clear()
         print("Choose an Option to get data")
         choices = ["Owners", "Staff"]
 
@@ -230,6 +243,7 @@ def Aggregate(cur, con):
         val = int(input("Enter your choice: "))
 
         if(val == 1):
+            clear()
             options = ["Maximum", "Miniumum", "Average"]
             print("What value of rent do you want? ")
             for var in range(len(options)):
@@ -259,6 +273,7 @@ def Aggregate(cur, con):
                 return
 
         elif(val == 2):
+            clear()
             Dept = input("Enter Department: ")
             Branch_ID = int(input("Enter Branch-ID: "))
             options = ["Maximum", "Miniumum", "Average"]
@@ -293,6 +308,7 @@ def Aggregate(cur, con):
                 return
 
         else:
+            clear()
             print(yellow("Oops!! You Entered an invalid choice"))
             return
 
@@ -307,6 +323,7 @@ def Aggregate(cur, con):
 
 def Search(cur, con):
     try:
+        clear()
         print(blue("Choose an Option to get analyse data",'bold'))
         choices = ["Owners", "Staff"]
 
@@ -369,6 +386,7 @@ def Search(cur, con):
 
 
 def Analysis(cur, con):
+    clear()
     print("Choose one of the following options to get order information")
     choices = ["Customer-ID", "Food-Item", "Branch-ID"]
 
@@ -379,6 +397,7 @@ def Analysis(cur, con):
 
     try:
         if(val == 1):
+            clear()
 
             Customer_ID = int(input("Enter Customer-ID: "))
             query = "SELECT Table_ID,Branch_ID FROM Customer WHERE Customer_ID='%d'" % (
@@ -416,6 +435,8 @@ def Analysis(cur, con):
 
         elif(val == 2):
 
+            clear()
+
             Food_Item = input("Enter Food-Item Name: ")
             query = "SELECT Food_Item_ID,Food_Type,Item_Cost FROM Menu WHERE Food_Item='%s'" % (
                 Food_Item)
@@ -446,6 +467,8 @@ def Analysis(cur, con):
                 print("Quantity:", row["Quantity"])
 
         elif(val == 3):
+
+            clear()
 
             Branch_ID = int(input("Enter the Branch-ID to get information: "))
             query = "SELECT Food_Item_ID,Customer_ID FROM _Orders WHERE Branch_ID='%d'" % (
