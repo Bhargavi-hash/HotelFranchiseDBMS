@@ -2,6 +2,41 @@ import pymysql
 import pymysql.cursors
 from ViewTable import *
 from Clear import *
+from datetime import date
+
+
+def AgeSearch(cur, con):
+    clear()
+    
+    todays_date = date.today()
+
+    age = int(input("Enter age: "))
+    options = ["greater than ", "less than ", "equal to"]
+    print("What comparision of age do you want? ")
+    for var in range(len(options)):
+        print(var+1, ". ", options[var], sep="")
+    option = int(input("Enter your choice: "))
+
+    today = date.today() 
+
+    if(option == 1):
+        query = "SELECT Staff_ID, First_Name, Last_Name FROM Staff WHERE (%d - Year_date - IF(%d < Month_date, 0, IF(%d < Day_date, 0, 1)))> %d;" % (today.year, today.month, today.day, age)
+        cur.execute(query)
+        rows = cur.fetchall()
+        viewTable(rows)
+    elif(option == 2):
+        query = "SELECT Staff_ID, First_Name, Last_Name FROM Staff WHERE (%d - Year_date - IF(%d < Month_date, 0, IF(%d < Day_date, 0, 1)))< %d;" % (today.year, today.month, today.day, age)
+        cur.execute(query)
+        rows = cur.fetchall()
+        viewTable(rows)
+    elif(option == 3):
+        query = "SELECT Staff_ID, First_Name, Last_Name FROM Staff WHERE (%d - Year_date - IF(%d < Month_date, 0, IF(%d < Day_date, 0, 1)))= %d;" % (today.year, today.month, today.day, age)
+        cur.execute(query)
+        rows = cur.fetchall()
+        viewTable(rows)
+    else:
+        print(yellow("Oops!! You Entered an invalid choice"))
+
 
 
 def Selection(cur, con):
@@ -142,7 +177,7 @@ def Projection(cur, con):
 
             Branch_ID = int(input("Enter Branch-ID: "))
             Quantity = float(input("Enter Quantity: "))
-            Raw = input("Choose a raw material type: ")
+            print("Choose a raw material type: ")
             choices = ["Poultry", "Vegetable_Shop", "Dairy"]
 
             for var in range(len(choices)):
@@ -163,20 +198,20 @@ def Projection(cur, con):
             option = int(input("Enter your choice: "))
 
             if(option == 1):
-                query = "SELECT Day_date,month_date,year_date FROM (%s) WHERE Quantity > ('%f')" % (
-                    choices[val-1], Quantity)
+                query = "SELECT Day_date,month_date,year_date FROM (%s) WHERE Quantity > ('%f') AND Branch_ID='%d' " % (
+                    choices[val-1], Quantity,Branch_ID)
                 cur.execute(query)
                 rows = cur.fetchall()
                 viewTable(rows)
             elif(option == 2):
-                query = "SELECT Day_date,month_date,year_date FROM (%s) WHERE Quantity < ('%f')" % (
-                    choices[val-1], Quantity)
+                query = "SELECT Day_date,month_date,year_date FROM (%s) WHERE Quantity < ('%f') AND Branch_ID='%d' " % (
+                    choices[val-1], Quantity,Branch_ID)
                 cur.execute(query)
                 rows = cur.fetchall()
                 viewTable(rows)
             elif(option == 3):
-                query = "SELECT Day_date,month_date,year_date FROM (%s) WHERE Quantity = ('%f')" % (
-                    choices[val-1], Quantity)
+                query = "SELECT Day_date,month_date,year_date FROM (%s) WHERE Quantity = ('%f') AND Branch_ID='%d' " % (
+                    choices[val-1], Quantity,Branch_ID)
                 cur.execute(query)
                 rows = cur.fetchall()
                 viewTable(rows)
@@ -185,39 +220,8 @@ def Projection(cur, con):
                 return
 
         elif(val == 4):
-
-            age = int(input("Enter age: "))
-            options = ["greater than ", "less than ", "equal to"]
-            print("What comparision of age do you want? ")
-            for var in range(len(options)):
-                print(var+1, ". ", options[var], sep="")
-
-            option = int(input("Enter your choice: "))
-
-            if(option == 1):
-                query = "SELECT Staff_ID,First_Name,Last_Name FROM Staff WHERE i_dunno_age > ('%d')" % (
-                    age)
-                cur.execute(query)
-                rows = cur.fetchall()
-                viewTable(rows)
-
-            elif(option == 2):
-                query = "SELECT Staff_ID,First_Name,Last_Name FROM Staff WHERE i_dunno_age > ('%d')" % (
-                    age)
-                cur.execute(query)
-                rows = cur.fetchall()
-                viewTable(rows)
-
-            elif(option == 3):
-                query = "SELECT Staff_ID,First_Name,Last_Name FROM Staff WHERE i_dunno_age > ('%d')" % (
-                    age)
-                cur.execute(query)
-                rows = cur.fetchall()
-                viewTable(rows)
-            else:
-                print(yellow("Oops!! You Entered an invalid choice"))
-                return
-
+            AgeSearch(cur,con)
+            
         else:
             print(yellow("Oops!! You Entered an invalid choice"))
             return

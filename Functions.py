@@ -4,7 +4,7 @@ import pymysql.cursors
 from add import *
 from Retrievals import *
 from Clear import *
-from datetime import date
+
 
 def addOptions(cur, con):
     try:
@@ -73,45 +73,5 @@ def Retrievals(cur, con):
 
     
 # *************************************** AGE *********************************************************
-def AgeSearch(con, cur):
-    clear()
-    
-    todays_date = date.today()
-
-    age = int(input("Enter age: "))
-    options = ["greater than ", "less than ", "equal to"]
-    print("What comparision of age do you want? ")
-    for var in range(len(options)):
-        print(var+1, ". ", options[var], sep="")
-    option = int(input("Enter your choice: "))
-
-    # def calculateAge(birthDate):
-    #     today = date.today()
-    #     age = today.year - birthDate.year -
-    #          ((today.month, today.day) <
-    #          (birthDate.month, birthDate.day))
-    #  
-    #     return age
-
-    today = date.today() 
-
-    if(option == 1):
-        query = "SELECT Staff_ID, First_Name, Last_Name FROM Staff WHERE (%d - Year_date - IF(%d < Month_date, 0, IF(%d < Day_date, 0, 1)))> %d;" % (today.year, today.month, today.day, age)
-        cur.execute(query)
-        rows = cur.fetchall()
-        viewTable(rows)
-    elif(option == 2):
-        query = "SELECT Staff_ID, First_Name, Last_Name FROM Staff WHERE (%d - Year_date - IF(%d < Month_date, 0, IF(%d < Day_date, 0, 1)))< %d;" % (today.year, today.month, today.day, age)
-        cur.execute(query)
-        rows = cur.fetchall()
-        viewTable(rows)
-    elif(option == 3):
-        query = "SELECT Staff_ID, First_Name, Last_Name FROM Staff WHERE (%d - Year_date - IF(%d < Month_date, 0, IF(%d < Day_date, 0, 1)))= %d;" % (today.year, today.month, today.day, age)
-        cur.execute(query)
-        rows = cur.fetchall()
-        viewTable(rows)
-    else:
-        print(yellow("Oops!! You Entered an invalid choice"))
-
 
 
