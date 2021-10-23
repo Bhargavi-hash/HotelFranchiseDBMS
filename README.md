@@ -7,3 +7,4 @@ don't forget:
 3. replace (.sql please chnage to good names)
 4. add finance.py @bhargs
 5. add delete.py @pulse
+6. there are 5 branchs check accordingly @bhargs :)
