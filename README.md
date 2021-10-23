@@ -1,13 +1,13 @@
 # DBMS project-HotelFranchise
 Data and application project
 
-By TEAM
+By TEAM -- **Kinda meeda oopu, mana TEAM thopu**
 * Kurukunda Bhargavi
 * Pampulapati Pallavi
 * Greeshma Amaraneni
 
 don't forget:
-1. age
+1. age --- **Done Boss :)**
 2. variable like query(search)
 3. replace (.sql please chnage to good names) --- **Done Boss :)**
 4. add finance.py @bhargs  --- **Done Boss :)**
