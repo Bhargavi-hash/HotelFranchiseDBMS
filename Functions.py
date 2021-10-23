@@ -102,13 +102,11 @@ def AgeSearch(con, cur):
         viewTable(rows)
     elif(option == 2):
         query = "SELECT Staff_ID, First_Name, Last_Name FROM Staff WHERE (%d - Year_date - IF(%d < Month_date, 0, IF(%d < Day_date, 0, 1)))< %d;" % (today.year, today.month, today.day, age)
-            age)
         cur.execute(query)
         rows = cur.fetchall()
         viewTable(rows)
     elif(option == 3):
         query = "SELECT Staff_ID, First_Name, Last_Name FROM Staff WHERE (%d - Year_date - IF(%d < Month_date, 0, IF(%d < Day_date, 0, 1)))= %d;" % (today.year, today.month, today.day, age)
-            comp_Year)
         cur.execute(query)
         rows = cur.fetchall()
         viewTable(rows)
