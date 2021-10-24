@@ -28,13 +28,13 @@ from ViewTable import *
 
 while(1):
     tmp = sp.call('clear', shell=True)
-    # username = input(green("Username: ", 'bold'))
-    # password = input(green("Password: ", 'bold'))
+    username = input(green("Username: ", 'bold'))
+    password = input(green("Password: ", 'bold'))
 
     try:
         con = pymysql.connect(host='localhost',
-                              user="root",
-                              password="Greeshma@68999",
+                              user=username,
+                              password=password,
                               db='Franchise',
                               cursorclass=pymysql.cursors.DictCursor)
     except Exception as e:
@@ -73,8 +73,8 @@ while(1):
                 Update(cur,con)
             elif(inp=='5'):
                 Retrievals(cur,con)
-            # elif(inp=='6'):
-            #     Retrievals(cur,con)
+            elif(inp=='6'):
+                Finance(cur,con)
             elif(inp == '7'):
                     exitflag = 1
                     print(blue("\n\nThanks for Coming!!\nSee you again\n",'bold'))
