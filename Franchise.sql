@@ -350,7 +350,15 @@ INSERT INTO Poultry VALUES
 ('Egg', 40, 200, 9, 8, 2021, 3),
 ('Egg', 40, 210, 9, 8, 2021, 4),
 ('Chicken', 89, 70, 18, 12, 2021, 1),
-('Egg', 40, 100, 16, 2, 2021, 2);
+('Egg', 40, 100, 16, 2, 2021, 2),
+('Meat', 52, 100, 21, 11, 2020, 1),
+('Meat', 52, 110, 26, 10, 2021, 4),
+('Chicken', 89, 70, 18, 12, 2021, 5),
+('Meat', 52, 110, 26, 10, 2021, 5),
+('Egg', 40, 110, 26, 10, 2021, 1),
+('Chicken', 89, 110, 23, 10, 2021, 4),
+('Meat', 52, 110, 14, 10, 2021, 3),
+('Egg', 40, 250, 13, 4, 2021, 5);
 
 -- Creating table structure for table "Vegetable_Shop"
 DROP TABLE IF EXISTS Vegetable_Shop;
@@ -373,7 +381,15 @@ INSERT INTO Vegetable_Shop VALUES
 ('Onion', 40, 200, 9, 8, 2021, 3),
 ('Tomato', 40, 210, 9, 8, 2021, 4),
 ('Cabbage', 89, 70, 18, 12, 2021, 1),
-('Cucumber', 40, 100, 16, 2, 2021, 2);
+('Cucumber', 40, 100, 16, 2, 2021, 2),
+('Cauliflower', 36, 100, 25, 4, 2021, 5),
+('Bottle Gaurd', 45, 80, 5, 8, 2021, 5),
+('Bitter Gaurd', 40, 70, 29, 7, 2021, 2),
+('Potato', 25, 150, 12, 12, 2020, 5),
+('Potato', 25, 140, 11, 11, 2020, 4),
+('Potato', 25, 130, 10, 10, 2020, 3),
+('Potato', 25, 120, 9, 9, 2020, 2),
+('Potato', 25, 110, 8, 18, 2020, 1);
 
 -- Creating table structure for table "Dairy"
 DROP TABLE IF EXISTS Dairy;
@@ -396,7 +412,11 @@ INSERT INTO Dairy VALUES
 ('Cheese', 40, 200, 9, 8, 2021, 3),
 ('Yogurt', 40, 210, 9, 8, 2021, 4),
 ('Milk', 89, 70, 18, 12, 2021, 1),
-('Milk', 40, 100, 16, 2, 2021, 2);
+('Milk', 40, 100, 16, 2, 2021, 2),
+('Curd', 35, 150, 17, 6, 2021, 5),
+('Cheese', 40, 100, 4, 7, 2021, 2),
+('Curd', 35, 42, 14, 8, 2021, 1);
+
 
 -- Creating table structure for table "_Order"
 DROP TABLE IF EXISTS _Order;
