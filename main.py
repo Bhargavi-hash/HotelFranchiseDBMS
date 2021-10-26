@@ -14,7 +14,10 @@ from Clear import *
 from Functions import *
 from add import *
 from Display import *
+from delete import *
 from ViewTable import *
+from Retrievals import *
+from Finance import *
 
 
 # *************** Declaring global variables ********************
