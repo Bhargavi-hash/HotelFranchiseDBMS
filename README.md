@@ -3,7 +3,7 @@ Data and application project
 
 By TEAM
 * Kurukunda Bhargavi
-* Pampulapati Pallavi
+* Pamulapati Pallavi
 * Greeshma Amaraneni
 
 ## What is this project about ?
