@@ -3,7 +3,7 @@ import pymysql
 import pymysql.cursors
 import sys
 from Clear import *
-from viewTable import *
+from ViewTable import *
 from main import *
 from colorama import Fore, Style
 from simple_colors import *

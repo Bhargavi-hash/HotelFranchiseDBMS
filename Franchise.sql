@@ -15,12 +15,10 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
------------------------------------------------------------
------------------------------------------------------------
+
 -- Creating Database: Franchise
------------------------------------------------------------
 DROP DATABASE IF EXISTS Franchise;
-CREATE DATABASE Franchise;
+CREATE SCHEMA Franchise;
 USE Franchise;
 
 -- Creating Table structure for table "Hotel"
@@ -79,7 +77,8 @@ CREATE TABLE IF NOT EXISTS Staff(
     CONSTRAINT Staff_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
     ON UPDATE CASCADE
     ON DELETE RESTRICT
-)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+)ENGINE = InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET = utf8;
+
 
 -- Inserting values into table "Staff" -- (First Hotel)
 INSERT INTO Staff VALUES
@@ -96,6 +95,7 @@ INSERT INTO Staff VALUES
 (13, 1, 'Bellatrix', 'Lestrange', 30, 7, 1982, 1210, 'Night', 'Cleaner'),
 (14, 1, 'Regulus', 'Black', 21, 8, 1999, 11900, 'Night', 'Chef'),
 (15, 1, 'Fluer', 'Delacaur', 15, 12, 1996, 14300, 'Afternoon', 'Chef');
+
 
 -- Inserting values into table "Staff" -- (Second Hotel)
 INSERT INTO Staff VALUES
@@ -286,7 +286,7 @@ CREATE TABLE Customer(
     CONSTRAINT Customer_ibfk_1 FOREIGN KEY (Branch_ID) REFERENCES Hotel (Branch_ID)
     ON UPDATE CASCADE
     ON DELETE RESTRICT
-)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+)ENGINE = InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET = utf8;
 
 -- Inserting values into table "Customer"
 INSERT INTO Customer VALUES
@@ -425,6 +425,7 @@ DROP TABLE IF EXISTS Staff_Mobile_Number;
 CREATE TABLE Staff_Mobile_Number(
     Staff_ID INT NOT NULL,
     Mobile_Number BIGINT NOT NULL,
+    PRIMARY KEY(Staff_ID,Mobile_Number),
     CONSTRAINT STN_ibfk_1 FOREIGN KEY (Staff_ID) REFERENCES Staff (Staff_ID)
     ON UPDATE CASCADE
     ON DELETE CASCADE
@@ -627,4 +628,3 @@ INSERT INTO Caterings VALUES
 (4, 500012, 8, 'Hamstone', 12, 21, 7),
 (1, 510100, 12, 'Maprud', 21, 36, 11),
 (1, 500014, 3, 'Ravitol', 36, 18, 5);
-

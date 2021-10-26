@@ -4,7 +4,7 @@ import pymysql.cursors
 import sys
 from main import *
 from Clear import *
-from viewTable import *
+from ViewTable import *
 from colorama import Fore, Style
 from simple_colors import *
 from tabulate import tabulate

@@ -2,12 +2,40 @@ import subprocess as sp
 import pymysql
 import pymysql.cursors
 from colorama import Fore, Style
-
+from delete import *
 
 from colorama import Fore, Style
 from simple_colors import *
 from tabulate import tabulate
 from Clear import *
+
+def deleteOptions(cur, con):
+    print("Choose the table from which you like to delete")
+    tables_present = ["Events", "Order", "Menu","Furniture", "Staff", "Raw_Materials"]
+    count = 0
+    for i in tables_present:
+        count = count + 1
+        print(str(count) + '.' + i)
+    
+    j = int(input("Enter your choice: "))
+
+    if(j == 1):
+        delete_event(cur, con)
+    elif(j == 2):
+        delete_order(cur, con)
+    elif(j == 3):
+        delete_MenuItem(cur,con)
+    elif(j == 4):
+        delete_Furniture(cur,con)
+    elif(j == 5):
+        delete_Staff(cur,con)
+    elif(j == 6):
+        delete_RawMaterials(cur,con)
+    else:
+        print("please select a valid choice")
+
+
+
 
 def Add_Events(cur, con):
 
@@ -155,7 +183,6 @@ def Add_Order(cur, con):
     print(green("Data has been successfully added!!"))
 
 
-
 def Add_Menu(cur, con):
 
     #############Taking in the input##############
@@ -202,7 +229,6 @@ def Add_Menu(cur, con):
     print(green("Data has been successfully added!!"))
 
 
-
 def Add_Furniture(cur, con):
 
     #############Taking in the input##############
@@ -220,10 +246,10 @@ def Add_Furniture(cur, con):
         print(red("Invalid data is entered"))
         return
 
-
     ###########Processing the queries###########
     try:
-        query = "SELECT Furniture_Name FROM Furniture WHERE Furniture_Name='%s' AND Branch_ID='%d'" % (Name,Branch)
+        query = "SELECT Furniture_Name FROM Furniture WHERE Furniture_Name='%s' AND Branch_ID='%d'" % (
+            Name, Branch)
         cur.execute(query)
         x1 = cur.fetchone()
         if((bool(x1))):
@@ -231,7 +257,8 @@ def Add_Furniture(cur, con):
             con.rollback()
             return
 
-        query = "INSERT INTO Furniture VALUES ('%s','%d','%d')" % (Name, Qty, Branch)
+        query = "INSERT INTO Furniture VALUES ('%s','%d','%d')" % (
+            Name, Qty, Branch)
         cur.execute(query)
         con.commit()
 
@@ -241,9 +268,8 @@ def Add_Furniture(cur, con):
         print(e)
         print(yellow("Try with different data"))
         return
-    
-    print(green("Data has been successfully added!!"))
 
+    print(green("Data has been successfully added!!"))
 
 
 def Add_Staff(cur, con):
@@ -291,10 +317,22 @@ def Add_Staff(cur, con):
         query = "INSERT INTO Staff(Branch_ID,First_Name,Last_Name,Day_date,Month_date,Year_date,Salary,Shift,Department_Name) VALUES ('%d','%s','%s','%d','%d','%d','%d','%s','%s')" % (
             branch_id, Full_Name[0], Full_Name[1], int(dob[0]), int(dob[1]), int(dob[2]), sal, shift, Dept)
         cur.execute(query)
+        
+        print("where")
 
-        query = "INSERT INTO Staff_Mobile_Number VALUES ('%d')" % (
-            phn)
+        query = "SELECT AUTO_INCREMENT FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '%s' AND   TABLE_NAME   = '%s'" % (
+                'Franchise', 'Staff')
         cur.execute(query)
+        x2 = cur.fetchone()
+
+        con.commit()
+ 
+        print(x2["AUTO_INCREMENT"])
+
+        query = "INSERT INTO Staff_Mobile_Number VALUES ('%d','%d')" % (
+            int(x2["AUTO_INCREMENT"]-1),phn)
+        cur.execute(query)
+      
 
         query = "UPDATE Department SET Num_workers=Num_workers+1 WHERE Department_Name='%s'" % (
             Dept)
@@ -312,68 +350,81 @@ def Add_Staff(cur, con):
     print(green("Data has been successfully added!!"))
 
 
+# def Add_Raw_Materials(cur, con):
 
-def Add_Raw_Materials(cur, con):
+#     #############Taking in the input##############
+#     clear()
+#     try:
+#         print("Enter the details of raw materials: ")
+#         branch_id = int(input("Branch ID: "))
+#         if not(branch_id > 0 and branch_id < 6):
+#             print("You entered a Invalid Branch-ID")
+#             return
 
-    #############Taking in the input##############
-    clear()
-    try:
-       print("Enter the details of raw materials: ")
-       branch_id = int(input("Branch ID: "))
-       if not(branch_id > 0 and branch_id < 6):
-         print("You entered a Invalid Branch-ID")
-         return
+#         print("Choose Raw Material Type:\n1.Poultry\n 2.Vegetables\n 3.Dairy\n")
+#         Source_id = int(input("Choice: "))
+#         Date = (input("Date of purchase(dd-mm-yyyy): ")).split('-')
+#         Date.append(" ")
+#         Date.append(" ")
+#         Date.append(" ")
+#         Item_Name = input("Item Name: ")
+#         Cost = int(input("Cost of the item: "))
+#         Qty = float(input("Quantity purchased: "))
 
-       print("Choose Raw Material Type:\n1.Poultry\n 2.Vegetables\n 3.Dairy\n")
-       Source_id = int(input("Choice: "))
-       Date = (input("Date of purchase(dd-mm-yyyy): ")).split('-')
-       Date.append(" ")
-       Date.append(" ")
-       Date.append(" ")
-       Item_Name = input("Item Name: ")
-       Cost = int(input("Cost of the item: "))
-       Qty = float(input("Quantity purchased: "))
+#     except Exception as e:
+#         print(red("Invalid data is entered"))
+#         return
 
-    except Exception as e:
-        print(red("Invalid data is entered"))
-        return
+#     ###########Processing the queries###########
 
+#     try:
+#         Name = ""
+#         my_table = ""
+#         if Source_id == 1:
+#             Name = "Poultry_"
+#             query = "INSERT INTO Poultry VALUES ('%s','%d',%f,'%d','%d','%d','%d')" % (
+#                 Item_Name, Cost, Qty, int(Date[0]), int(Date[1]), int(Date[2]), branch_id)
+#             cur.execute(query)
 
-    ###########Processing the queries###########
+#         elif Source_id == 2:
+#             Name = "Vegetable_"
+#             query = "INSERT INTO Vegetable_Shop VALUES ('%s','%d',%f,'%d','%d','%d','%d')" % (
+#                 Item_Name, Cost, Qty, int(Date[0]), int(Date[1]), int(Date[2]), branch_id)
+#             cur.execute(query)
 
-    try:
-        Name = ""
-        my_table = ""
-        if Source_id == 1:
-            Name = "Poultry_"
-            my_table = "Poultry"
+#         elif Source_id == 3:
+#             Name = "Dairy_"
+#             query = "INSERT INTO Dairy VALUES ('%s','%d',%f,'%d','%d','%d','%d')" % (
+#                 Item_Name, Cost, Qty, int(Date[0]), int(Date[1]), int(Date[2]), branch_id)
+#             cur.execute(query)
 
-        elif Source_id == 2:
-            Name = "Vegetable_"
-            my_table = "Vegetable_Shop"
-        elif Source_id == 3:
-            Name = "Dairy_"
-            my_table = "Dairy"
-        else:
-            print("Invalid choice")
-            return
+#         else:
+#             print("Invalid choice")
+#             return
 
-        query = "INSERT INTO ('%s') VALUES ('%s','%d',%f,'%d','%d','%d','%d')" % (
-            my_table, Item_Name,Cost,Qty, int(Date[0]), int(Date[1]), int(Date[2]), branch_id)
-        cur.execute(query)
+#         Name += str(branch_id)
+#         add = 0
+#         query = "SELECT * FROM Raw_Materials WHERE Source_Name=('%s')" % (Name)
+#         cur.execute(query)
+#         x1 = cur.fetchone()
 
-        Name += branch_id
-        query = "INSERT INTO Raw_Materials VALUES ('%d','%d','%s')" % (
-            branch_id, Source_id, Name)
-        cur.execute(query)
+#         if(not(bool(x1))):
+#             con.rollback()
+#             add = 1
+        
 
-        con.commit()
+#         if(add == 1):
+#             query = "INSERT INTO Raw_Materials VALUES ('%d','%d','%s')" % (
+#                 branch_id, Source_id, Name)
+#             cur.execute(query)
 
-    except Exception as e:
-        con.rollback()
-        print(red("Failed to insert into database..."))
-        print(e)
-        print(red("Try with different data"))
-        return
+#         con.commit()
 
-    print(green("Data has been successfully added!!"))
+#     except Exception as e:
+#         con.rollback()
+#         print(red("Failed to insert into database..."))
+#         print(e)
+#         print(red("Try with different data"))
+#         return
+
+#     print(green("Data has been successfully added!!"))

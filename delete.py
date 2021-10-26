@@ -1,29 +1,14 @@
 from datetime import datetime
 
-def deleteOptions(cur, con):
-    print("Choose the table from which you like to delete")
-    tables_present = ["Events", "Order", "Menu","Furniture", "Staff", "Raw_Materials"]
-    count = 0
-    for i in tables_present:
-        count = count + 1
-        print(str(count) + '.' + i)
-    
-    j = int(input("Enter your choice: "))
+import subprocess as sp
+import pymysql
+import pymysql.cursors
+from colorama import Fore, Style
 
-    if(j == 1):
-        delete_event(cur, con)
-    elif(j == 2):
-        delete_order(cur, con)
-    elif(j == 3):
-        delete_MenuItem(cur,con)
-    elif(j == 4):
-        delete_Furniture(cur,con)
-    elif(j == 5):
-        delete_Staff(cur,con)
-    elif(j == 6):
-        delete_RawMaterials(cur,con)
-    else:
-        print("please select a valid choice")
+from colorama import Fore, Style
+from simple_colors import *
+from tabulate import tabulate
+from Clear import *
 
 
 def delete_event(cur, con):

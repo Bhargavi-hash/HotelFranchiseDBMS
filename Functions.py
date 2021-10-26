@@ -10,7 +10,7 @@ def addOptions(cur, con):
     try:
         print("Choose an item to add info!!")
         info = ["Events", "Order", "Menu",
-                "Furniture", "Staff", "Raw_Materials"]
+                "Furniture", "Staff"]
 
         for var in range(len(info)):
             print(var+1, ". ", info[var], sep="")
@@ -27,8 +27,8 @@ def addOptions(cur, con):
             Add_Furniture(cur, con)
         elif(val == 5):
             Add_Staff(cur, con)
-        elif(val == 6):
-            Add_Raw_Materials(cur, con)
+        # elif(val == 6):
+        #     Add_Raw_Materials(cur, con)
         else:
             print("Oops!! You Entered an invalid choice")
             print("Press enter to continue ....")
@@ -70,8 +70,4 @@ def Retrievals(cur, con):
         print(e)
         print(red("Try again!!"), 'bold')
         return
-
-    
-# *************************************** AGE *********************************************************
-
 
