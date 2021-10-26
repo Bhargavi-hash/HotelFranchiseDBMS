@@ -67,8 +67,8 @@ while(1):
                 Display(cur,con)
             elif(inp == '2'):
                 addOptions(cur,con)
-            # elif(inp == '3'):
-            #     deleteOptions(cur,con)
+            elif(inp == '3'):
+                deleteOptions(cur,con)
             elif(inp == '4'):
                 Update(cur,con)
             elif(inp=='5'):
