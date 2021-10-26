@@ -8,7 +8,6 @@ from tabulate import tabulate
 from Clear import *
 
 
-
 def Add_Events(cur, con):
 
     ######Taking in the input##############
@@ -165,8 +164,9 @@ def Add_Menu(cur, con):
         Food_type = input("Food Type: ")
         Food_Cost = int(input("Food Item Cost: "))
         disco = input("Do you want to give discount on this item? [Y/n]: ")
-        Min = int(input("  Enter the Minimum Cost to avail discount: "))
-        amt = int(input("  Enter the corresponding discount Amount: "))
+        if(disco == 'Y' or disco == 'y'):
+            Min = int(input("  Enter the Minimum Cost to avail discount: "))
+            amt = int(input("  Enter the corresponding discount Amount: "))
 
     except Exception as e:
         print("Invalid data is entered")
@@ -289,7 +289,6 @@ def Add_Staff(cur, con):
         query = "INSERT INTO Staff(Branch_ID,First_Name,Last_Name,Day_date,Month_date,Year_date,Salary,Shift,Department_Name) VALUES ('%d','%s','%s','%d','%d','%d','%d','%s','%s')" % (
             branch_id, Full_Name[0], Full_Name[1], int(dob[0]), int(dob[1]), int(dob[2]), sal, shift, Dept)
         cur.execute(query)
-        
 
         query = "SELECT AUTO_INCREMENT FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '%s' AND   TABLE_NAME   = '%s'" % (
                 'Franchise', 'Staff')
@@ -297,12 +296,10 @@ def Add_Staff(cur, con):
         x2 = cur.fetchone()
 
         con.commit()
- 
 
         query = "INSERT INTO Staff_Mobile_Number VALUES ('%d','%d')" % (
-            int(x2["AUTO_INCREMENT"]-1),phn)
+            int(x2["AUTO_INCREMENT"]-1), phn)
         cur.execute(query)
-      
 
         query = "UPDATE Department SET Num_workers=Num_workers+1 WHERE Department_Name='%s'" % (
             Dept)
@@ -381,7 +378,7 @@ def Add_Staff(cur, con):
 #         if(not(bool(x1))):
 #             con.rollback()
 #             add = 1
-        
+
 
 #         if(add == 1):
 #             query = "INSERT INTO Raw_Materials VALUES ('%d','%d','%s')" % (

@@ -13,7 +13,7 @@ from time import sleep
 
 #************************************* Display to screen options implemented **************************************************
 
-def Display(con, cur):
+def Display(cur, con):
     clear()     # Clearing screen before displaying further options
     
     # Displaying options to choose

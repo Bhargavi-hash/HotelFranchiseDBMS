@@ -107,7 +107,6 @@ def Projection(cur, con):
 
         if(val == 1):
             clear()
-
             Rent = int(input("Enter Monthly-rent: "))
             options = ["greater than ", "less than ", "equal to"]
             print("Do you want rent values ")
@@ -243,7 +242,6 @@ def Aggregate(cur, con):
 
         for var in range(len(choices)):
             print(var+1, ". ", choices[var], sep="")
-        clear()
         val = int(input("Enter your choice: "))
 
         if(val == 1):

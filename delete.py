@@ -33,7 +33,7 @@ def delete_event(cur, con):
     except Exception as e:
         con.rollback()
         print("Failed to delete event")
-        print("Error occured: ", e) 
+        print(red("Invalid data!!",'bold'))
     return
 
 def delete_Staff(cur,con):
@@ -63,7 +63,7 @@ def delete_Staff(cur,con):
     except Exception as e:
         con.rollback()
         print("Failed to delete person with staff id", id)
-        print("Error Occured: ", e)
+        print(red("Invalid data!!",'bold'))
 
 def delete_order(cur, con):
     try:
@@ -79,7 +79,7 @@ def delete_order(cur, con):
     except Exception as e:
         con.rollback()
         print("Failed to delete Order")
-        print("Error Occured:", e)
+        print(red("Invalid data!!",'bold'))
 
 def delete_MenuItem(cur,con):
     try:
@@ -97,7 +97,7 @@ def delete_MenuItem(cur,con):
     except Exception as e:
         con.rollback()
         print("Failed to delete Menu Item")
-        print("Error Occured:",e)
+        print(red("Invalid data!!",'bold'))
 
 def delete_Furniture(cur,con):
     try:
@@ -115,7 +115,7 @@ def delete_Furniture(cur,con):
     except Exception as e:
         con.rollback()
         print("Failed to delete Furniture item")
-        print("Error Occured:", e)
+        print(red("Invalid data!!",'bold'))
 
 def delete_RawMaterials(cur, con):
     try: 
@@ -145,4 +145,4 @@ def delete_RawMaterials(cur, con):
     except Exception as e:
         con.rollback()
         print("Failed to delete the data")
-        print("Error occured", e)
+        print(red("Invalid data!!",'bold'))

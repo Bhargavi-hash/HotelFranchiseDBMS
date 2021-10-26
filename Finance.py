@@ -13,7 +13,7 @@ from time import sleep
 
 #*************************************** Finance analysis ************************************************************
 
-def Finance(con, cur):
+def Finance(cur, con):
     clear()     # Clearing screen before displaying further options
     
     # Displaying options to choose

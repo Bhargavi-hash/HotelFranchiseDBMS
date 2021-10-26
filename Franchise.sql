@@ -314,21 +314,21 @@ CREATE TABLE Raw_Materials(
 
 -- Inserting values into table "Raw_Materials"
 INSERT INTO Raw_Materials VALUES
-(1, 3, 'Dairy'),
-(1, 2, 'Vegetable_Shop'),
-(1, 1, 'Poultry'),
-(2, 3, 'Dairy'),
-(2, 2, 'Vegetable_Shop'),
-(2, 1, 'Poultry'),
-(3, 3, 'Dairy'),
-(3, 2, 'Vegetable_Shop'),
-(3, 1, 'Poultry'),
-(4, 3, 'Dairy'),
-(4, 2, 'Vegetable_Shop'),
-(4, 1, 'Poultry'),
-(5, 3, 'Dairy'),
-(5, 2, 'Vegetable_Shop'),
-(5, 1, 'Poultry');
+(1, 3, 'Dairy_1'),
+(1, 2, 'Vegetable_Shop_1'),
+(1, 1, 'Poultry_1'),
+(2, 3, 'Dairy_2'),
+(2, 2, 'Vegetable_Shop_2'),
+(2, 1, 'Poultry_2'),
+(3, 3, 'Dairy_3'),
+(3, 2, 'Vegetable_Shop_3'),
+(3, 1, 'Poultry_3'),
+(4, 3, 'Dairy_4'),
+(4, 2, 'Vegetable_Shop_4'),
+(4, 1, 'Poultry_4'),
+(5, 3, 'Dairy_5'),
+(5, 2, 'Vegetable_Shop_5'),
+(5, 1, 'Poultry_5');
 
 -- Creating table structure for table "Poultry"
 DROP TABLE IF EXISTS Poultry;
