@@ -10,6 +10,7 @@ from simple_colors import *
 from tabulate import tabulate
 from Clear import *
 
+from datetime import datetime
 
 def delete_event(cur, con):
     try:
@@ -81,8 +82,13 @@ def delete_order(cur, con):
         print("Error Occured:", e)
 
 def delete_MenuItem(cur,con):
-    try: 
-        id = int(input("Enter the Food Item ID of the item you like to delete: "))
+    try:
+        name = input("Enter Name of the food Item you like to delete: ")
+        select_query = "SELECT Food_Item_ID FROM Menu WHERE Food_Item = '%s';" %(name)
+        cur.execute(select_query)
+        con.commit()
+        outp = cur.fetchall()
+        id = int(outp[0]['Food_Item_ID'])
         del_query = "DELETE FROM Menu WHERE Food_Item_ID = %d;" %(id)
         cur.execute(del_query)
         con.commit()
@@ -120,7 +126,7 @@ def delete_RawMaterials(cur, con):
             print("You entered a Invalid Branch-ID")
             return
 
-        print("Choose Raw Material Type:\n1.Poultry\n 2.Vegetables\n 3.Dairy\n")
+        print("Choose Raw Material Type:\n1. Poultry\n2. Vegetables\n3. Dairy\n")
         Source_id = int(input("Choice: "))
         name = "Poultry"
 

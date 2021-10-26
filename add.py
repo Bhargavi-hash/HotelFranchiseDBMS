@@ -290,7 +290,6 @@ def Add_Staff(cur, con):
             branch_id, Full_Name[0], Full_Name[1], int(dob[0]), int(dob[1]), int(dob[2]), sal, shift, Dept)
         cur.execute(query)
         
-        print("where")
 
         query = "SELECT AUTO_INCREMENT FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '%s' AND   TABLE_NAME   = '%s'" % (
                 'Franchise', 'Staff')
@@ -299,7 +298,6 @@ def Add_Staff(cur, con):
 
         con.commit()
  
-        print(x2["AUTO_INCREMENT"])
 
         query = "INSERT INTO Staff_Mobile_Number VALUES ('%d','%d')" % (
             int(x2["AUTO_INCREMENT"]-1),phn)
