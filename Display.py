@@ -2,22 +2,20 @@ import subprocess as sp
 import pymysql
 import pymysql.cursors
 import sys
-
-
+from Clear import *
+from viewTable import *
+from main import *
 from colorama import Fore, Style
 from simple_colors import *
 from tabulate import tabulate
 from os import system, name
 from time import sleep
-
 # from global_ import con, cur
 
-from Clear import *
-from ViewTable import *
 
 #************************************* Display to screen options implemented **************************************************
 
-def Display(cur,con):
+def Display(con, cur):
     clear()     # Clearing screen before displaying further options
     
     # Displaying options to choose
@@ -54,7 +52,8 @@ def Display(cur,con):
         print(yellow("--> 2. Branch-2 Staff details"))
         print(yellow("--> 3. Branch-3 Staff details"))
         print(yellow("--> 4. Branch-4 Staff details"))
-        print(yellow("--> 5. Staff details of all branches\n"))
+        print(yellow("--> 5. Branch-5 Staff details"))
+        print(yellow("--> 6. Staff details of all branches\n"))
 
         staffOption = input(magenta("Your choice(1 - 5) ? ", 'bold'))
 
@@ -67,8 +66,9 @@ def Display(cur,con):
         elif staffOption == '4':
             query = "SELECT Staff_ID, First_Name, Last_Name, concat(Day_date,'-',Month_date,'-',Year_date) AS DOB, Department_Name, Shift, Salary FROM Staff WHERE Branch_ID = 4;"
         elif staffOption == '5':
+            query = "SELECT Staff_ID, First_Name, Last_Name, concat(Day_date,'-',Month_date,'-',Year_date) AS DOB, Department_Name, Shift, Salary FROM Staff WHERE Branch_ID = 5;"
+        elif staffOption == '6':
             query = "SELECT Staff_ID, First_Name, Last_Name, concat(Day_date,'-',Month_date,'-',Year_date) AS DOB, Department_Name, Shift, Salary FROM Staff;"
-        
 
     elif viewOption == '3':
         
@@ -146,7 +146,53 @@ def Display(cur,con):
     elif viewOption == '7':
         query = "SELECT * From Discount;"
     elif viewOption == '8':
-        query = "SELECT * From Furniture;"
+        clear()
+        # **************************** Further options to view in furniture ****************************************
+        print(blue("----- What do you want to view? -----", 'bold'))
+        print(yellow("1. Specific furniture in all branches"))
+        print(yellow("2. Furniture in a particular branch"))
+        
+        FurOption = input(cyan("Your choice(1-2)? "))
+        if FurOption == '1':
+            clear()
+
+            print(blue("----- Choose one from below furniture -----", 'bold'))
+            print(yellow("1. Table"))
+            print(yellow("2. Stool"))
+            print(yellow("3. Chair"))
+            print(yellow("4. Desk"))
+            print(yellow("5. Cushion"))
+
+            furChoice = input(cyan("Your choice(1-5)? "))
+
+            if furChoice == '1':
+                query = "SELECT * FROM Furniture WHERE Furniture_Name = 'Table';"
+            if furChoice == '2':
+                query = "SELECT * FROM Furniture WHERE Furniture_Name = 'Stool';"
+            if furChoice == '3':
+                query = "SELECT * FROM Furniture WHERE Furniture_Name = 'Chair';"
+            if furChoice == '4':
+                query = "SELECT * FROM Furniture WHERE Furniture_Name = 'Desk';"
+            if furChoice == '5':
+                query = "SELECT * FROM Furniture WHERE Furniture_Name = 'Cushion';"
+        
+        elif FurOption == '2':
+            clear()
+            b_ID = int(input(yellow("Enter the branch ID: ")))
+            validQuery = "Select * From Hotel WHERE Branch_ID = %d;" % (b_ID)
+            
+            cur = con.cursor()
+            cur.execute(validQuery)
+            data = cur.fetchall()
+
+            # ****************** Error handling ***************************
+            if not data:
+                print(red("Error: No branch EXISTS with branch ID = %d !!" % (b_ID), 'bold'))
+                print(red("... TRY AGAIN WITH NEW DATA !!"))
+                return
+            else:
+                query = "Select * From Furniture WHERE Branch_ID = %d;" % (b_ID)
+            
     elif viewOption == '9':
         query = "SELECT * From Raw_Materials;"
 
