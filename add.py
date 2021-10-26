@@ -59,18 +59,21 @@ def Add_Events(cur, con):
             cur.execute(query)
             x1 = cur.fetchone()
 
+
             if(not(bool(x1))):
                 print("You entered an invalid food item name")
                 con.rollback()
                 return
 
-            query = "SELECT AUTO_INCREMENT FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '%s' AND   TABLE_NAME   = '%s'" % (
-                'Franchise', 'Customer')
+            query = "SELECT MAX(Customer_ID) as Customer_ID FROM Customer"
             cur.execute(query)
             x2 = cur.fetchone()
+            con.commit()     
+
+            # print(x2)   
 
             query = "INSERT INTO _Order VALUES ('%d','%d','%d')" % (
-                food_qty[var], x2["AUTO_INCREMENT"], x1["Food_Item_ID"])
+                food_qty[var], int(x2["Customer_ID"]), x1["Food_Item_ID"])
             cur.execute(query)
 
         con.commit()
@@ -133,14 +136,13 @@ def Add_Order(cur, con):
                 print("You entered an invalid food item name")
                 con.rollback()
                 return
-
-            query = "SELECT AUTO_INCREMENT FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '%s' AND   TABLE_NAME   = '%s'" % (
-                'Franchise', 'Customer')
+        
+            query = "SELECT MAX(Customer_ID) as Customer_ID FROM Customer"
             cur.execute(query)
             x2 = cur.fetchone()
 
             query = "INSERT INTO _Order VALUES ('%d','%d','%d')" % (
-                food_qty[var], x2["AUTO_INCREMENT"], x1["Food_Item_ID"])
+                food_qty[var], x2["Customer_ID"], x1["Food_Item_ID"])
             cur.execute(query)
         con.commit()
 
@@ -179,14 +181,14 @@ def Add_Menu(cur, con):
         cur.execute(query)
         con.commit()
 
-        if disco.upper() == 'y':
-            query = "SELECT AUTO_INCREMENT FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '%s' AND   TABLE_NAME   = '%s'" % (
-                'Franchise', 'Menu')
+        if(disco == 'Y' or disco == 'y'):            
+            query = "SELECT MAX(Food_Item_ID) as Food_Item_ID FROM Menu"
             cur.execute(query)
             x = cur.fetchone()
+            con.commit()
 
             query = "INSERT INTO Discount VALUES ('%d','%d','%d')" % (
-                x["AUTO_INCREMENT"], amt, Min)
+                x["Food_Item_ID"], amt, Min)
             cur.execute(query)
 
         con.commit()
@@ -289,18 +291,18 @@ def Add_Staff(cur, con):
         query = "INSERT INTO Staff(Branch_ID,First_Name,Last_Name,Day_date,Month_date,Year_date,Salary,Shift,Department_Name) VALUES ('%d','%s','%s','%d','%d','%d','%d','%s','%s')" % (
             branch_id, Full_Name[0], Full_Name[1], int(dob[0]), int(dob[1]), int(dob[2]), sal, shift, Dept)
         cur.execute(query)
+        
+        con.commit()
 
-        query = "SELECT AUTO_INCREMENT FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '%s' AND   TABLE_NAME   = '%s'" % (
-                'Franchise', 'Staff')
+        query = "SELECT MAX(Staff_ID) as Staff_ID FROM Staff"
         cur.execute(query)
         x2 = cur.fetchone()
-
         con.commit()
 
         query = "INSERT INTO Staff_Mobile_Number VALUES ('%d','%d')" % (
-            int(x2["AUTO_INCREMENT"]-1), phn)
+            int(x2["Staff_ID"]), phn)
         cur.execute(query)
-
+         
         query = "UPDATE Department SET Num_workers=Num_workers+1 WHERE Department_Name='%s'" % (
             Dept)
         cur.execute(query)
