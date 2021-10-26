@@ -38,4 +38,6 @@ They will further display new options for the user so as to make our database in
 For every invalid input(No data or out of constraints data) it will show an ERROR or WARNING which is dealt by the error handling functions used in every case.
 
 ******************************************************************************************************************
-### TRY RUNNING OUR DATABASE AND HOPE YOU ENJOY PLAYING WITH IT. THANK YOU :)
+### Try running our DATABASE and hope you enjoy playing with it. 
+
+### THANK YOU :)
