@@ -4,6 +4,7 @@ import pymysql.cursors
 from add import *
 from Retrievals import *
 from Clear import *
+from delete import *
 
 
 def addOptions(cur, con):
@@ -71,3 +72,35 @@ def Retrievals(cur, con):
         print(red("Try again!!"), 'bold')
         return
 
+
+def deleteOptions(cur, con):
+    try:
+        print("Choose the table from which you like to delete")
+        tables_present = ["Events", "Order", "Menu",
+                          "Furniture", "Staff", "Raw_Materials"]
+        count = 0
+        for i in tables_present:
+            count = count + 1
+            print(str(count) + '.' + i)
+
+        j = int(input("Enter your choice: "))
+
+        if(j == 1):
+            delete_event(cur, con)
+        elif(j == 2):
+            delete_order(cur, con)
+        elif(j == 3):
+            delete_MenuItem(cur, con)
+        elif(j == 4):
+            delete_Furniture(cur, con)
+        elif(j == 5):
+            delete_Staff(cur, con)
+        elif(j == 6):
+            delete_RawMaterials(cur, con)
+        else:
+            print("please select a valid choice")
+
+    except Exception as e:
+        print(e)
+        print(red("Try again!!"), 'bold')
+        return

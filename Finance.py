@@ -2,7 +2,7 @@ import subprocess as sp
 import pymysql
 import pymysql.cursors
 import sys
-from main import *
+
 from Clear import *
 from ViewTable import *
 from colorama import Fore, Style

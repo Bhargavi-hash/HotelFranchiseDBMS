@@ -4,13 +4,11 @@ import pymysql.cursors
 import sys
 from Clear import *
 from ViewTable import *
-from main import *
 from colorama import Fore, Style
 from simple_colors import *
 from tabulate import tabulate
 from os import system, name
 from time import sleep
-# from global_ import con, cur
 
 
 #************************************* Display to screen options implemented **************************************************
